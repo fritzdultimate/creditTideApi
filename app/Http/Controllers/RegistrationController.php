@@ -10,8 +10,7 @@ class RegistrationController extends Controller
 {
     protected $registrationService;
 
-    public function __construct(RegistrationService $registrationService)
-    {
+    public function __construct(RegistrationService $registrationService) {
         $this->registrationService = $registrationService;
     }
 
@@ -21,6 +20,7 @@ class RegistrationController extends Controller
         try {
             if(!empty($request->register)) {
                 $user = $this->registrationService->register($data);
+                $request->session()->regenerate();
                 return response()->json([
                     'message' => 'User registered successfully!',
                     'user' => $user,

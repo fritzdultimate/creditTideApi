@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\Referral;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 
 class RegistrationService
 {
@@ -37,6 +39,8 @@ class RegistrationService
                 'phone' => $data['phone'] ?? null,
                 'invitation_code' => $this->generateUniqueInvitationCode(),
             ]);
+
+            Auth::login($user);
 
             // If an invitation code was provided, try to locate the referring user.
             if (!empty($data['invitation_code'])) {
