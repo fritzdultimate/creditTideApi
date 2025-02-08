@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\TestimonyController;
 use Illuminate\Http\Request;
@@ -22,4 +23,8 @@ Route::prefix('heroes')->group(function () {
 
 Route::prefix('testimonies')->group(function () {
     Route::get('/', [TestimonyController::class, 'list']);
+});
+
+Route::prefix('celebrities')->group(function () {
+    Route::get('/', [CelebrityInvestorController::class, 'list']);
 });
