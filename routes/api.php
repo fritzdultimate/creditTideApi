@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\RegistrationController;
 use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\TestimonyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

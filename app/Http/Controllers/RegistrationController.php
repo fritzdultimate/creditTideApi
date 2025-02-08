@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
@@ -19,13 +19,15 @@ class RegistrationController extends Controller
         $data = $request->validated();
 
         try {
-            $user = $this->registrationService->register($data);
-
-            // Return a response, maybe a resource, token, etc.
-            return response()->json([
-                'message' => 'User registered successfully!',
-                'user' => $user,
-            ], 201);
+            if(!empty($request->register)) {
+                $user = $this->registrationService->register($data);
+                return response()->json([
+                    'message' => 'User registered successfully!',
+                    'user' => $user,
+                ], 201);
+            }
+            return response()->json(['message' => 'data ok']);
+            
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Registration failed.',
