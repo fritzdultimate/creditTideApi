@@ -42,9 +42,9 @@ class RegistrationController extends Controller
             // send token to email
 
             return response()->json([
-                'message' => "Email verification sent",
-                'done' => true
-            ], 201);
+                'message' => $token['message'],
+                'done' => $token['done']
+            ], $token['code']);
 
         } catch(\Exception $e) {
             return response()->json([

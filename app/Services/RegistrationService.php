@@ -127,6 +127,14 @@ class RegistrationService
                 'code' => 404
             ];
         }
+        $lastToken = PasswordResetToken::where('email', $email)->first();
+        if($lastToken && !Carbon::parse($lastToken->created_at)->addHours(2)->isPast()) {
+            return [
+                'message' => 'We cannot resend you a verification code at this moment.',
+                'done' => false,
+                'code' => 400
+            ];
+        }
         $token = rand(100000, 999999);
 
         $token = PasswordResetToken::create([
@@ -183,6 +191,11 @@ class RegistrationService
                 'code' => 400
             ];
         }
+
+        User::where('email', $data['email'])->update([
+            'email_verified_at' => now()
+        ]);
+        $token->forceDelete();
 
         return [
             'message' => 'Email verified',
