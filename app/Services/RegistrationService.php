@@ -195,7 +195,10 @@ class RegistrationService
         User::where('email', $data['email'])->update([
             'email_verified_at' => now()
         ]);
-        $token->forceDelete();
+        PasswordResetToken::where([
+            'email' => $data['email'],
+            'token' => $data['token']
+        ])->forceDelete();
 
         return [
             'message' => 'Email verified',
