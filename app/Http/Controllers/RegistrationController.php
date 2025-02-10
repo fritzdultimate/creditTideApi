@@ -36,6 +36,24 @@ class RegistrationController extends Controller
         }
     }
 
+    public function resendVerification(Request $request) {
+        try {
+            $token = $this->registrationService->createVerificationToken($request->email);
+            // send token to email
+
+            return response()->json([
+                'message' => "Email verification sent",
+                'done' => true
+            ], 201);
+
+        } catch(\Exception $e) {
+            return response()->json([
+                'message' => 'Verification error.',
+                'error'   => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function verifyEmailAddress(Request $request) {
         try {
             $verified = $this->registrationService->verifyEmail([

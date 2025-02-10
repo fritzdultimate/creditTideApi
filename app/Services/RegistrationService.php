@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class RegistrationService
 {
@@ -111,6 +112,24 @@ class RegistrationService
         } while (User::where('invitation_code', $code)->exists());
 
         return $code;
+    }
+
+    /**
+     * Create Verification token
+     * 
+     * @param string $email Email address to send the verification token to
+     * 
+     * @return PersonalAccessToken
+     */
+    public function createVerificationToken (string $email): PersonalAccessToken {
+        $token = rand(100000, 999999);
+
+        $token = PersonalAccessToken::create([
+            'email' => $email,
+            'token' => $token
+        ]);
+
+        return $token;
     }
 
     /**
