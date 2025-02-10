@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
 use App\Services\RegistrationService;
+use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
 {
@@ -20,7 +21,6 @@ class RegistrationController extends Controller
         try {
             if(!empty($request->register)) {
                 $user = $this->registrationService->register($data);
-                $request->session()->regenerate();
                 return response()->json([
                     'message' => 'User registered successfully!',
                     'user' => $user,
@@ -31,6 +31,25 @@ class RegistrationController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Registration failed.',
+                'error'   => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function verifyEmailAddress(Request $request) {
+        try {
+            $verified = $this->registrationService->verifyEmail([
+                'email' => $request->email,
+                'token' => $request->emailCode
+            ]);
+
+            return response()->json([
+                'message' => $verified['message'],
+                'done' => $verified['done']
+            ], $verified['code']);
+        } catch(\Exception $e) {
+            return response()->json([
+                'message' => 'Verification failed.',
                 'error'   => $e->getMessage(),
             ], 500);
         }

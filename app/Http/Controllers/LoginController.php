@@ -25,7 +25,8 @@ class LoginController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
+        Auth::user();
         $request->session()->regenerate();
-        return response()->json(['message' => 'Login was successful.']);
+        return response()->json(['message' => "Login was successful"]);
     }
 }

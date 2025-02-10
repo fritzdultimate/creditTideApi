@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\PasswordResetToken;
 use App\Models\User;
 use App\Models\Referral;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -109,5 +111,55 @@ class RegistrationService
         } while (User::where('invitation_code', $code)->exists());
 
         return $code;
+    }
+
+    /**
+     * Verifies User email address
+     * 
+     * @param array $data {
+     * 
+     *  @type string    $email  User's email address
+     *  @type string    $token  User's token to verify
+     * }
+     * 
+     * @return array{message: string, done: string, code: string}
+     */
+
+    public function verifyEmail(array $data): array {
+        $user = User::where('email', $data['email'])->first();
+        if(!$user) {
+            return [
+                'message' => 'Account cannot be found.',
+                'done' => false,
+                'code' => 404
+            ];
+        }
+
+        $token = PasswordResetToken::where([
+            'email' => $data['email'],
+            'token' => $data['token']
+        ])->first();
+
+        if(!$token) {
+            return [
+                'message' => 'Token is expired, please click on resend email',
+                'done' => false,
+                'code' => 404
+            ];
+        }
+
+        if(Carbon::parse($token->created_at)->addHours(2)->isPast()) {
+            return [
+                'message' => 'Token is expired, please click on resend email',
+                'done' => false,
+                'code' => 400
+            ];
+        }
+
+        return [
+            'message' => 'Email verified',
+            'done' => true,
+            'code' => 200
+        ];
     }
 }

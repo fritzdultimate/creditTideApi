@@ -42,6 +42,7 @@ Route::prefix('celebrities')->group(function () {
 
 Route::post("/register", [RegistrationController::class, 'register']);
 Route::post("/login", [LoginController::class, 'login']);
+Route::post('/verify-email-address', [RegistrationController::class, 'verifyEmailAddress']);
 
 // ****************************************************************************************
 // ****************************************************************************************
@@ -60,7 +61,7 @@ Route::post("/login", [LoginController::class, 'login']);
 // ************************************************************************************
 // ************************************************************************************
 
-Route::get('/user', [UserController::class, 'getUser']);
+Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
 
 // ************************************************************************************
 // ************************************************************************************
