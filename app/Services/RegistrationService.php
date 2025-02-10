@@ -8,9 +8,6 @@ use App\Models\Referral;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
-use Laravel\Sanctum\PersonalAccessToken;
 
 class RegistrationService
 {
@@ -119,17 +116,29 @@ class RegistrationService
      * 
      * @param string $email Email address to send the verification token to
      * 
-     * @return PersonalAccessToken
+     * @return PasswordResetToken
      */
-    public function createVerificationToken (string $email): PersonalAccessToken {
+    public function createVerificationToken (string $email): array {
+        $user = User::where('email', $email)->first();
+        if(!$user) {
+            return [
+                'message' => 'Email address is not registered with us.',
+                'done' => false,
+                'code' => 404
+            ];
+        }
         $token = rand(100000, 999999);
 
-        $token = PersonalAccessToken::create([
+        $token = PasswordResetToken::create([
             'email' => $email,
             'token' => $token
         ]);
 
-        return $token;
+        return [
+            'message' => 'Verification token sent to provided email address.',
+            'done' => true,
+            'code' => 201
+        ];
     }
 
     /**

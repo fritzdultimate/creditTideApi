@@ -10,4 +10,8 @@ class PasswordResetToken extends Model {
         'token',
         'created_at'
     ];
+
+    public function setUpdatedAt($value) {
+        return $this;
+    }
 }
