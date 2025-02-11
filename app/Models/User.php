@@ -42,11 +42,20 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
+    protected function casts(): array {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function balance() {
+        return $this->hasOne(Balance::class);
+    }
+
+    protected static function booted() {
+        static::created(function($user) {
+            $user->balance()->create();
+        });
     }
 }
