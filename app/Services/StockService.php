@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Stock;
 
-class StocksService {
+class StockService {
 
 
     /**
@@ -12,8 +12,6 @@ class StocksService {
      * 
      * @return Stocks
     */
-
-
     public function getStocks() {
         $stocks = Stock::all();
 
