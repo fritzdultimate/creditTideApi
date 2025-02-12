@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\HeroController;
+use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\UserController;
-use App\Services\InvestmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,7 +65,7 @@ Route::post('/send-email-verification', [RegistrationController::class, 'resendV
 
 Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
 
-Route::post('/app/invest', [InvestmentService::class, 'invest'])->middleware('auth:sanctum');
+Route::post('/app/invest', [InvestmentController::class, 'invest'])->middleware('auth:sanctum');
 
 // ************************************************************************************
 // ************************************************************************************

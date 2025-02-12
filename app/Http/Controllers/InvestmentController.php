@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegistrationRequest;
 use App\Services\InvestmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +15,7 @@ class InvestmentController extends Controller
         $this->investmentService = $investmentService;
     }
 
-    public function register(Request $request) {
+    public function invest(Request $request) {
         try {
             $invest = $this->investmentService->invest([
                 'user_id' => Auth::id(),
