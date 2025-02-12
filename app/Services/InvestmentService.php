@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Balance;
 use App\Models\Investment;
 use App\Models\InvestmentPlan;
 use App\Models\PasswordResetToken;
 use App\Models\Stock;
+use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -120,6 +122,15 @@ class InvestmentService {
             ]);
 
             if($investment) {
+                Balance::where('user_id', $investment->user->id)->decrement('balance', $data['amount']);
+                Balance::where('user_id', $investment->user->id)->increment('locked_balance', $data['amount']);
+                Transaction::create([
+                    'user_id' => $investment->user->id,
+                    'type' => 'investment',
+                    'status' => 'completed',
+                    'amount' => $data['amount'],
+                    'reference' => 
+                ])
                 PasswordResetToken::where([
                     'email' => $user->email,
                     'token' => $data['token']
