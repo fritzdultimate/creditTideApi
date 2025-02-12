@@ -129,8 +129,9 @@ class InvestmentService {
                     'type' => 'investment',
                     'status' => 'completed',
                     'amount' => $data['amount'],
-                    'reference' => 
-                ])
+                    'reference' => $this->generatePaymentReference()
+                ]);
+                
                 PasswordResetToken::where([
                     'email' => $user->email,
                     'token' => $data['token']
@@ -143,5 +144,8 @@ class InvestmentService {
                 ];
             }
         }
+    }
+    protected function generatePaymentReference(): string {
+        return 'INV-' . now()->timestamp . strtoupper(Str::random(6));
     }
 }
