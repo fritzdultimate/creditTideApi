@@ -71,7 +71,19 @@ class InvestmentService {
         }
 
         if(!$data['token']) {
+            $token = rand(100000, 999999);
 
+            $token = PasswordResetToken::create([
+                'email' => $user->email,
+                'token' => $token
+            ]);
+            // send email
+
+            return [
+                'message' => 'Verification token sent to provided email address.',
+                'done' => true,
+                'code' => 201
+            ];
         } else {
             $token = PasswordResetToken::where([
                 'email' => $user->email,
@@ -104,10 +116,18 @@ class InvestmentService {
                 'start_date' => now()
             ]);
 
-            PasswordResetToken::where([
-                'email' => $user->email,
-                'token' => $data['token']
-            ])->forceDelete();
+            if($investment) {
+                PasswordResetToken::where([
+                    'email' => $user->email,
+                    'token' => $data['token']
+                ])->forceDelete();
+                
+                return [
+                    'message' => 'Investment went successfully.',
+                    'done' => true,
+                    'code' => 201
+                ];
+            }
         }
     }
 }
