@@ -71,6 +71,9 @@ class InvestmentService {
         }
 
         if(!$data['token']) {
+            PasswordResetToken::where([
+                'email' => $user->email,
+            ])->forceDelete();
             $token = rand(100000, 999999);
 
             $token = PasswordResetToken::create([
@@ -92,7 +95,7 @@ class InvestmentService {
 
             if(!$token) {
                 return [
-                    'message' => 'Token is expired, please click on resend email',
+                    'message' => 'Invalid or expired token, please click on re-send OTP.',
                     'done' => false,
                     'code' => 404
                 ];
@@ -100,7 +103,7 @@ class InvestmentService {
 
             if(Carbon::parse($token->created_at)->addHours(2)->isPast()) {
                 return [
-                    'message' => 'Token is expired, please click on resend email',
+                    'message' => 'Invalid or expired token, please click on re-send OTP.',
                     'done' => false,
                     'code' => 400
                 ];
@@ -121,7 +124,7 @@ class InvestmentService {
                     'email' => $user->email,
                     'token' => $data['token']
                 ])->forceDelete();
-                
+
                 return [
                     'message' => 'Investment went successfully.',
                     'done' => true,
