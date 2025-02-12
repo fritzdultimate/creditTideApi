@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Investment;
+use App\Models\InvestmentPlan;
 use App\Models\PasswordResetToken;
+use App\Models\Stock;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -18,6 +21,7 @@ class InvestmentService {
      *  @type number    $investment_plan_id  Plan ID
      *  @type number    $stock_id  Stock ID
      *  @type number    $amount  Investment initial amount
+     *  @type number    $token  Token to verify user before proceeding (OPTIONAL)
      * }
      * 
      * @return array{message: string, done: string, code: string}
@@ -32,41 +36,78 @@ class InvestmentService {
                 'code' => 404
             ];
         }
-        
+        $investmentPlan = InvestmentPlan::find($data['investment_plan_id']);
+        $stock = Stock::find($data['stock_id']);
 
-        $token = PasswordResetToken::where([
-            'email' => $data['email'],
-            'token' => $data['token']
-        ])->first();
-
-        if(!$token) {
+        if(!$investmentPlan) {
             return [
-                'message' => 'Token is expired, please click on resend email',
+                'message' => 'Investment plan is required, please choose one.',
+                'done' => false,
+                'code' => 404
+            ];   
+        }
+
+        if(!$investmentPlan) {
+            return [
+                'message' => 'Please choose a stock to invest on.',
+                'done' => false,
+                'code' => 404
+            ];   
+        }
+        if($user->balance->balance < $data['amount']) {
+            return [
+                'message' => 'Insufficient balance.',
                 'done' => false,
                 'code' => 404
             ];
         }
 
-        if(Carbon::parse($token->created_at)->addHours(2)->isPast()) {
+        if($investmentPlan->min_amount > $data['amount'] || $investmentPlan['max_amount'] < $data['amount']) {
             return [
-                'message' => 'Token is expired, please click on resend email',
+                'message' => 'Investment amount out of range, please review and try again.',
                 'done' => false,
-                'code' => 400
-            ];
+                'code' => 404
+            ];   
         }
 
-        User::where('email', $data['email'])->update([
-            'email_verified_at' => now()
-        ]);
-        PasswordResetToken::where([
-            'email' => $data['email'],
-            'token' => $data['token']
-        ])->forceDelete();
+        if(!$data['token']) {
 
-        return [
-            'message' => 'Email verified',
-            'done' => true,
-            'code' => 200
-        ];
+        } else {
+            $token = PasswordResetToken::where([
+                'email' => $user->email,
+                'token' => $data['token']
+            ])->first();
+
+            if(!$token) {
+                return [
+                    'message' => 'Token is expired, please click on resend email',
+                    'done' => false,
+                    'code' => 404
+                ];
+            }
+
+            if(Carbon::parse($token->created_at)->addHours(2)->isPast()) {
+                return [
+                    'message' => 'Token is expired, please click on resend email',
+                    'done' => false,
+                    'code' => 400
+                ];
+            }
+
+            // Create investment now
+            $investment = Investment::create([
+                'user_id' => $data['user_id'],
+                'investment_plan_id' => $data['investment_plan_id'],
+                'stock_id' => $data['stock_id'],
+                'amount' => $data['amount'],
+                'current_value' => $data['amount'],
+                'start_date' => now()
+            ]);
+
+            PasswordResetToken::where([
+                'email' => $user->email,
+                'token' => $data['token']
+            ])->forceDelete();
+        }
     }
 }
