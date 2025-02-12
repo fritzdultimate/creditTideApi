@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\InvestmentStatus;
 use App\Models\Balance;
 use App\Models\Investment;
 use App\Models\InvestmentPlan;
@@ -128,7 +129,7 @@ class InvestmentService {
                 Transaction::create([
                     'user_id' => $investment->user->id,
                     'type' => 'investment',
-                    'status' => 'completed',
+                    'status' => InvestmentStatus::COMPLETED,
                     'amount' => $data['amount'],
                     'reference' => $this->generatePaymentReference()
                 ]);

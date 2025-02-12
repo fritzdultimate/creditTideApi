@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InvestmentStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Investment extends Model {
@@ -16,6 +17,10 @@ class Investment extends Model {
         'status',
         'created_at',
         'updated_at'
+    ];
+
+    protected $casts = [
+        'status' => InvestmentStatus::class,
     ];
 
     public function user() {
