@@ -10,6 +10,7 @@ use App\Models\Stock;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class InvestmentService {
 
@@ -131,7 +132,7 @@ class InvestmentService {
                     'amount' => $data['amount'],
                     'reference' => $this->generatePaymentReference()
                 ]);
-                
+
                 PasswordResetToken::where([
                     'email' => $user->email,
                     'token' => $data['token']
