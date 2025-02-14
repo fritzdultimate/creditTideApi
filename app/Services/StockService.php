@@ -10,7 +10,7 @@ class StockService {
     /**
      * Get all available stocks
      * 
-     * @return Stocks
+     * @return array
     */
     public function getStocks() {
         $stocks = Stock::all();
