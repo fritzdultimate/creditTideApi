@@ -4,6 +4,7 @@ use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TestimonyController;
@@ -78,3 +79,4 @@ Route::post('/app/invest', [InvestmentController::class, 'invest'])->middleware(
 
 // ************************************************************************************
 Route::get('/stocks', [StockController::class, 'stocks']);
+Route::get('/plans', [PlanController::class, 'plans']);
