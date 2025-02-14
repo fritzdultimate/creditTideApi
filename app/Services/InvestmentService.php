@@ -126,7 +126,7 @@ class InvestmentService {
             if($investment) {
                 Balance::where('user_id', $investment->user->id)->decrement('balance', $data['amount']);
                 Balance::where('user_id', $investment->user->id)->increment('locked_balance', $data['amount']);
-                Transaction::create([
+                $transaction = Transaction::create([
                     'user_id' => $investment->user->id,
                     'type' => 'investment',
                     'status' => TransactionStatus::COMPLETED,
@@ -140,7 +140,7 @@ class InvestmentService {
                 ])->forceDelete();
 
                 return [
-                    'message' => 'Investment went successfully.',
+                    'message' => $transaction->id,
                     'done' => true,
                     'code' => 201
                 ];

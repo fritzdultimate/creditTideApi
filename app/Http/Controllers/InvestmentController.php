@@ -28,7 +28,6 @@ class InvestmentController extends Controller
                 'message' => $invest['message'],
                 'done' => $invest['done'],
             ], $invest['code']);
-            return response()->json(['message' => 'data ok']);
             
         } catch (\Exception $e) {
             return response()->json([
