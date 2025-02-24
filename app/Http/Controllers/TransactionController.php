@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Services\TransactionService;
 
 class TransactionController extends Controller
 {
-    protected $transaction;
+    protected $transactionService;
 
-    public function __construct(PlanService $planService) {
-        $this->planService = $planService;
+    public function __construct(TransactionService $transactionService) {
+        $this->transactionService = $transactionService;
     }
 
-    public function plans() {
-        $result = $this->planService->getPlans();
+    public function transactions() {
+        $result = $this->transactionService->getTransactions();
 
         return response()->json([
             'message' => $result['message'],
