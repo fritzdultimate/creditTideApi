@@ -24,4 +24,8 @@ class TransactionController extends Controller
             'done' => $result['done']
         ], $result['code']);
     }
+
+    public function getTransaction($id) {
+        
+    }
 }

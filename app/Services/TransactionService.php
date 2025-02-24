@@ -25,6 +25,19 @@ class TransactionService {
             'done' => true,
             'code' => 200
         ];
-    } 
+    }
+
+    public function getTransaction($id) {
+        $transaction = Transaction::where([
+            'user_id' => Auth::id(),
+            'id' => $id
+        ]);
+
+        return [
+            'message' => $transaction,
+            'done' => true,
+            'code' => 200
+        ];
+    }
     
 }
