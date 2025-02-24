@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionService {
 
@@ -12,8 +13,12 @@ class TransactionService {
      * 
      * @return array
     */
-    public function getTransactions() {
-        $transactions = Transaction::all();
+    public function getTransactions($offset, $limit) {
+        $transactions = Transaction::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
 
         return [
             'message' => $transactions,

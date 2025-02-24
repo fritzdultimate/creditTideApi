@@ -8,6 +8,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TestimonyController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,7 @@ Route::post('/send-email-verification', [RegistrationController::class, 'resendV
 Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
 
 Route::post('/app/invest', [InvestmentController::class, 'invest'])->middleware('auth:sanctum');
+Route::get('/app/transactions', [TransactionController::class, 'transactions'])->middleware('auth:sanctum');
 
 // ************************************************************************************
 // ************************************************************************************
