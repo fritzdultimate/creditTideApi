@@ -31,7 +31,7 @@ class TransactionService {
         $transaction = Transaction::where([
             'user_id' => Auth::id(),
             'id' => $id
-        ]);
+        ])->first();
 
         return [
             'message' => $transaction,

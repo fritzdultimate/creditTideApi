@@ -26,6 +26,10 @@ class TransactionController extends Controller
     }
 
     public function getTransaction($id) {
-        
+        $result = $this->transactionService->getTransaction($id);
+        return response()->json([
+            'message' => $result['message'],
+            'done' => $result['done']
+        ], $result['code']);
     }
 }

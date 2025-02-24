@@ -70,6 +70,7 @@ Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctu
 
 Route::post('/app/invest', [InvestmentController::class, 'invest'])->middleware('auth:sanctum');
 Route::get('/app/transactions', [TransactionController::class, 'transactions'])->middleware('auth:sanctum');
+Route::get('/app/transactions/{id}', [TransactionController::class, 'getTransaction'])->middleware('auth:sanctum');
 
 // ************************************************************************************
 // ************************************************************************************
