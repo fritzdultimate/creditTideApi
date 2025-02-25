@@ -47,7 +47,7 @@ class TransactionController extends Controller
             } else {
                 return $date->format('Y-m-d');
             }
-        });
+        })->toArray();
 
         return response()->json([
             'message' => $grouped,
