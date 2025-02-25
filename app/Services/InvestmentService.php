@@ -58,9 +58,16 @@ class InvestmentService {
                 'code' => 404
             ];   
         }
+        if(!is_numeric($data['amount'])) {
+            return [
+                'message' => "Invalid amount",
+                'done' => false,
+                'code' => 400
+            ];
+        }
         if($user->balance->balance < $data['amount']) {
             return [
-                'message' => 'Insufficient balance.',
+                'message' => "Insufficient balance.",
                 'done' => false,
                 'code' => 404
             ];
