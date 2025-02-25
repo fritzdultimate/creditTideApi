@@ -43,7 +43,7 @@ class TransactionService {
     }
 
     public function getGroupedTransaction($page, $status) {
-        $perPage = 2;
+        $perPage = 10;
         Paginator::currentPageResolver(function () use ($page) {
             return $page;
         });
