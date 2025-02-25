@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionService {
@@ -41,13 +42,24 @@ class TransactionService {
         ];
     }
 
-    public function getGroupedTransaction($perPage) {
-        $transactions = Transaction::with('user')->where([
-            'user_id' => Auth::id()
-        ])->orderBy('created_at', 'desc')->paginate($perPage);
+    public function getGroupedTransaction($page, $status) {
+        $perPage = 2;
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
+        $transactions = Transaction::with('user')
+            ->where([
+                'user_id' => Auth::id()
+            ])
+            ->orderBy('created_at', 'desc');
+            
+
+        if($status != 'all') {
+            $transactions->where('status', $status);
+        }
 
         return [
-            'message' => $transactions,
+            'message' => $transactions->paginate($perPage),
             'done' => true,
             'code' => 200
         ];

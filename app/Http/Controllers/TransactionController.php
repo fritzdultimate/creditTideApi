@@ -34,8 +34,10 @@ class TransactionController extends Controller
         ], $result['code']);
     }
 
-    public function getGroupedTransaction() {
-        $result = $this->transactionService->getGroupedTransaction(20);
+    public function getGroupedTransaction(Request $request) {
+        $status = $request->query('status', 'all');
+        $page = $request->query('page', 1);
+        $result = $this->transactionService->getGroupedTransaction($page, $status);
         $transactions = $result['message'];
 
         $grouped = collect($transactions->items())->groupBy(function ($transaction) {
