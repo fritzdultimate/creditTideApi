@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionService {
@@ -28,13 +29,25 @@ class TransactionService {
     }
 
     public function getTransaction($id) {
-        $transaction = Transaction::where([
+        $transaction = Transaction::with('user')->where([
             'user_id' => Auth::id(),
             'id' => $id
         ])->first();
 
         return [
             'message' => $transaction,
+            'done' => true,
+            'code' => 200
+        ];
+    }
+
+    public function getGroupedTransaction($perPage) {
+        $transactions = Transaction::with('user')->where([
+            'user_id' => Auth::id()
+        ])->orderBy('created_at', 'desc')->paginate($perPage);
+
+        return [
+            'message' => $transactions,
             'done' => true,
             'code' => 200
         ];
