@@ -10,6 +10,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserWalletController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +73,9 @@ Route::post('/app/invest', [InvestmentController::class, 'invest'])->middleware(
 Route::get('/app/transactions', [TransactionController::class, 'transactions'])->middleware('auth:sanctum');
 Route::get('/app/transactions/{id}', [TransactionController::class, 'getTransaction'])->middleware('auth:sanctum');
 Route::get('/app/grouped/transactions', [TransactionController::class, 'getGroupedTransaction'])->middleware('auth:sanctum');
+
+
+Route::get('app/user/wallets', [UserWalletController::class, 'getWallets'])->middleware('auth:sanctum');
 
 // ************************************************************************************
 // ************************************************************************************
