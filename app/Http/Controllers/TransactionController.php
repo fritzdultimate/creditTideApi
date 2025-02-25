@@ -50,7 +50,7 @@ class TransactionController extends Controller
         });
 
         return response()->json([
-            'data' => $grouped,
+            'message' => $grouped,
             'pagination' => [
                 'total' => $transactions->total(),
                 'per_page' => $transactions->perPage(),
