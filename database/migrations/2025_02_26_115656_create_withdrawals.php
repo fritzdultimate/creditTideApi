@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_wallet_id')->constrained('user_wallets')->onDelete('cascade');
+            $table->decimal('amount', 20, 2)->default(0);
+            $table->enum('status', ['pending', 'processing', 'completed', 'rejected', 'cancelled', 'approved'])->default('pending');
+            $table->string('reference')->unique();
             $table->timestamps();
         });
     }
