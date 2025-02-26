@@ -120,8 +120,9 @@ class DepositService {
                     'token' => $data['token']
                 ])->forceDelete();
 
+                $deposit = Deposit::with(['userWallet.adminWallet'])->find($deposit->id);
                 return [
-                    'message' => $transaction->id,
+                    'message' => $deposit,
                     'done' => true,
                     'code' => 201
                 ];
