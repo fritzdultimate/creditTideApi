@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Services\DepositService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,27 +11,26 @@ class DepositController extends Controller
 {
     protected $depositController;
 
-    public function __construct(depositController $depositController) {
+    public function __construct(DepositService $depositController) {
         $this->depositController = $depositController;
     }
 
-    public function invest(Request $request) {
+    public function deposit(Request $request) {
         try {
-            $invest = $this->depositController->invest([
+            $result = $this->depositController->deposit([
                 'user_id' => Auth::id(),
-                'investment_plan_id' => $request->investment_plan_id,
-                'stock_id' => $request->stock_id,
+                'user_wallet_id' => $request->user_wallet_id,
                 'amount' => $request->amount,
                 'token' => $request->token
             ]);
             return response()->json([
-                'message' => $invest['message'],
-                'done' => $invest['done'],
-            ], $invest['code']);
+                'message' => $result['message'],
+                'done' => $result['done'],
+            ], $result['code']);
             
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Investment failed.',
+                'message' => 'Deposit failed.',
                 'error'   => $e->getMessage(),
             ], 500);
         }

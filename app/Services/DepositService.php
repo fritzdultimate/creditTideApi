@@ -11,6 +11,7 @@ use App\Models\PasswordResetToken;
 use App\Models\Stock;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\UserWallet;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -22,6 +23,14 @@ class DepositService {
         if(!$user) {
             return [
                 'message' => 'Something went wrong.',
+                'done' => false,
+                'code' => 404
+            ];
+        }
+        $userWallet = UserWallet::find($data['user_wallet_id']);
+        if(!$userWallet) {
+            return [
+                'message' => 'Unknown wallet. Make sure to select a wallet.',
                 'done' => false,
                 'code' => 404
             ];
