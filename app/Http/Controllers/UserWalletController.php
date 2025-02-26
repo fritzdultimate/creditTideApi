@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreWalletRequest;
 use App\Services\UserWalletService;
 use Illuminate\Http\Request;
 
@@ -22,10 +23,10 @@ class UserWalletController extends Controller
         ], $result['code']);
     }
 
-    public function updateAddress(Request $request) {
+    public function updateAddress(StoreWalletRequest $request) {
         $result = $this->userWalletService->updateWalletAddress([
             'address' => $request->address,
-            'admin_wallet_id' => $request->wallet_id
+            'admin_wallet_id' => $request->admin_wallet_id
         ]);
 
         return response()->json([
