@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CelebrityInvestorController;
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\LoginController;
@@ -77,6 +78,9 @@ Route::get('/app/grouped/transactions', [TransactionController::class, 'getGroup
 
 Route::get('app/user/wallets', [UserWalletController::class, 'getWallets'])->middleware('auth:sanctum');
 Route::post('/app/user/wallet/address/change', [UserWalletController::class, 'updateAddress'])->middleware('auth:sanctum');
+
+Route::post('/app/user/deposit', [DepositController::class, 'deposit'])->middleware('auth:sanctum');
+
 
 // ************************************************************************************
 // ************************************************************************************
