@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('deposits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('type', ['deposit', 'withdrawal', 'investment', 'profit', 'loss', 'referral_bonus']);
+            $table->foreignId('user_wallet_id')->constrained('user_wallets')->onDelete('cascade');
+            $table->decimal('amount', 20, 2)->default(0);
             $table->enum('status', ['pending', 'processing', 'completed', 'rejected', 'cancelled', 'approved'])->default('pending');
-            $table->decimal('amount', 15, 2);
             $table->string('reference')->unique();
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('deposits');
     }
 };
