@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_wallets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_wallet_id')->constrained('admin_wallets')->onDelete('cascade');
-            $table->string('wallet')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
