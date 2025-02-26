@@ -76,6 +76,7 @@ Route::get('/app/grouped/transactions', [TransactionController::class, 'getGroup
 
 
 Route::get('app/user/wallets', [UserWalletController::class, 'getWallets'])->middleware('auth:sanctum');
+Route::post('/app/user/wallet/address/change', [UserWalletController::class, 'updateAddress'])->middleware('auth:sanctum');
 
 // ************************************************************************************
 // ************************************************************************************

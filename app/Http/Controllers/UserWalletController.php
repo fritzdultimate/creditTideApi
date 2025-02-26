@@ -21,4 +21,16 @@ class UserWalletController extends Controller
             'done' => $result['done']
         ], $result['code']);
     }
+
+    public function updateAddress(Request $request) {
+        $result = $this->userWalletService->updateWalletAddress([
+            'address' => $request->address,
+            'admin_wallet_id' => $request->wallet_id
+        ]);
+
+        return response()->json([
+            'message' => $result['message'],
+            'done' => $result['done']
+        ], $result['code']);
+    }
 }
