@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\TransactionStatus;
 use App\Models\Balance;
+use App\Models\Deposit;
 use App\Models\Investment;
 use App\Models\InvestmentPlan;
 use App\Models\PasswordResetToken;
@@ -13,25 +14,10 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
-class InvestmentService {
+class DepositService {
 
 
-    /**
-     * Create Investment for user
-     * 
-     * @param array $data {
-     * 
-     *  @type number    $user_id  User's ID
-     *  @type number    $investment_plan_id  Plan ID
-     *  @type number    $stock_id  Stock ID
-     *  @type number    $amount  Investment initial amount
-     *  @type number    $token  Token to verify user before proceeding (OPTIONAL)
-     * }
-     * 
-     * @return array{message: string, done: string, code: string}
-     */
-
-    public function invest(array $data): array {
+    public function deposit(array $data): array {
         $user = User::find($data['user_id']);
         if(!$user) {
             return [
@@ -40,24 +26,6 @@ class InvestmentService {
                 'code' => 404
             ];
         }
-        $investmentPlan = InvestmentPlan::find($data['investment_plan_id']);
-        $stock = Stock::find($data['stock_id']);
-
-        if(!$investmentPlan) {
-            return [
-                'message' => 'Investment plan is required, please choose one.',
-                'done' => false,
-                'code' => 404
-            ];   
-        }
-
-        if(!$stock) {
-            return [
-                'message' => 'Please choose a stock to invest on.',
-                'done' => false,
-                'code' => 404
-            ];   
-        }
         if(!is_numeric($data['amount'])) {
             return [
                 'message' => "Invalid amount",
@@ -65,20 +33,19 @@ class InvestmentService {
                 'code' => 400
             ];
         }
-        if($user->balance->balance < $data['amount']) {
+        if($data['amount'] < 50) {
             return [
-                'message' => "Insufficient balance.",
+                'message' => "Minimum deposit is $50.",
                 'done' => false,
                 'code' => 404
             ];
         }
-
-        if($investmentPlan->min_amount > $data['amount'] || $investmentPlan['max_amount'] < $data['amount']) {
+        if($data['amount'] > 500000) {
             return [
-                'message' => 'Investment amount out of range, please review and try again.',
+                'message' => "Maximum deposit is $500, 000.",
                 'done' => false,
                 'code' => 404
-            ];   
+            ];
         }
 
         if(!$data['token']) {
@@ -121,24 +88,22 @@ class InvestmentService {
             }
 
             // Create investment now
-            $investment = Investment::create([
+            $deposit = Deposit::create([
                 'user_id' => $data['user_id'],
-                'investment_plan_id' => $data['investment_plan_id'],
-                'stock_id' => $data['stock_id'],
+                'user_wallet_id' => $data['user_wallet_id'],
+                'status' => TransactionStatus::PENDING,
                 'amount' => $data['amount'],
-                'current_value' => $data['amount'],
-                'start_date' => now()
+                'reference' => $this->generatePaymentReference(),
             ]);
 
-            if($investment) {
-                Balance::where('user_id', $investment->user->id)->decrement('balance', $data['amount']);
-                Balance::where('user_id', $investment->user->id)->increment('locked_balance', $data['amount']);
+            if($deposit) {
+                // send email
                 $transaction = Transaction::create([
-                    'user_id' => $investment->user->id,
-                    'type' => 'investment',
-                    'status' => TransactionStatus::COMPLETED,
+                    'user_id' => $deposit->user->id,
+                    'type' => 'deposit',
+                    'status' => TransactionStatus::PENDING,
                     'amount' => $data['amount'],
-                    'reference' => $this->generatePaymentReference()
+                    'reference' => $deposit->reference
                 ]);
 
                 PasswordResetToken::where([
