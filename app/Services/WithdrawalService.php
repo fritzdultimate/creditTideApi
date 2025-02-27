@@ -47,7 +47,7 @@ class WithdrawalService {
         }
         if($data['amount'] > 500000) {
             return [
-                'message' => "Maximum withdrawal is $500, 000.",
+                'message' => "Maximum withdrawal is $500,000.",
                 'done' => false,
                 'code' => 404
             ];
