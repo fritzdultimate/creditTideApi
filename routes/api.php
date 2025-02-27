@@ -12,6 +12,7 @@ use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserWalletController;
+use App\Http\Controllers\WithdrawalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +81,8 @@ Route::get('app/user/wallets', [UserWalletController::class, 'getWallets'])->mid
 Route::post('/app/user/wallet/address/change', [UserWalletController::class, 'updateAddress'])->middleware('auth:sanctum');
 
 Route::post('/app/user/deposit', [DepositController::class, 'deposit'])->middleware('auth:sanctum');
+
+Route::post('/app/user/withdraw', [WithdrawalController::class, 'withdraw'])->middleware('auth:sanctum');
 
 
 // ************************************************************************************
