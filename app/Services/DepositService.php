@@ -51,7 +51,7 @@ class DepositService {
         }
         if($data['amount'] > 500000) {
             return [
-                'message' => "Maximum deposit is $500, 000.",
+                'message' => "Maximum deposit is $500,000.",
                 'done' => false,
                 'code' => 404
             ];
