@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProfilePictureRequest;
-use App\Http\Requests\UpdateProfileDetails;
+use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Requests\UpdateProfileDetailsRequest;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,7 +26,7 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function updateProfileDetails(UpdateProfileDetails $request) {
+    public function updateProfileDetails(UpdateProfileDetailsRequest $request) {
         $data = [
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -54,4 +53,6 @@ class UserController extends Controller
             'done' => $update['done']
         ], $update['code']);
     }
+
+    public function updatePassword(UpdatePasswordRequest $request) {}
 }
