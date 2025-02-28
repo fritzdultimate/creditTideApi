@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileDetailsRequest;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -71,6 +72,21 @@ class UserController extends Controller
 
         return response()->json([
             'message' => "Password has been changed successfully.",
+            'done' => true
+        ], 201);
+    }
+
+    public function updatePreferences(Request $request) {
+        $preference = $request->input('tag');
+        User::where('id', Auth::id())->update([
+            $preference => $request->$preference
+        ]);
+    }
+
+    public function logout() {
+        Auth::logout();
+        return response()->json([
+            'message' => "Account logged out.",
             'done' => true
         ], 201);
     }
