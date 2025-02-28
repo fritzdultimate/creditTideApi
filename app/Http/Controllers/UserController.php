@@ -60,8 +60,12 @@ class UserController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
+        if($request->logout_devices) {
+            Auth::logoutOtherDevices($request->new_password);
+        }
+
         return response()->json([
-            'message' => 'Password has been changed successfully.',
+            'message' => "Password has been changed successfully.",
             'done' => true
         ], 201);
     }
