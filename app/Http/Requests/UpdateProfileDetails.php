@@ -21,7 +21,7 @@ class UpdateProfileDetails extends FormRequest
      */
     public function rules(): array {
         return [
-            'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|size:10',
+            'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|size:10240',
         ];
     }
 
