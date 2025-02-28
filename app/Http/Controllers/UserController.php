@@ -84,7 +84,9 @@ class UserController extends Controller
     }
 
     public function logout() {
-        Auth::logout();
+        auth()->guard('web')->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
         return response()->json([
             'message' => "Account logged out.",
             'done' => true
