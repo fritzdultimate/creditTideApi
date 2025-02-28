@@ -25,6 +25,10 @@ class UserController extends Controller
     }
 
     public function updateProfileDetails(Request $request) {
+        $validated = $request->validate([
+            'firstname' => 'required|max:15|min:3',
+            'lastname' => 'required|max:15|min:3',
+        ]);
         $data = [
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
