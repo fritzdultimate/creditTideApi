@@ -22,6 +22,8 @@ class UpdateProfileDetails extends FormRequest
     public function rules(): array {
         return [
             'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|size:10240',
+            'firstname' => 'required|min:3|max:20|alpha_dash',
+            'lastname' => 'required|min:3|max:20|alpha_dash'
         ];
     }
 
@@ -29,7 +31,15 @@ class UpdateProfileDetails extends FormRequest
         return [
             'profile_picture.image' => 'Please upload a valid picture',
             'profile_picture.mimes' => 'Valid extionsions: jpg,jpeg,png',
-            'profile_picture.size' => 'Profile picture is too large, max size - 10mb'
+            'profile_picture.size' => 'Profile picture is too large, max size - 10mb',
+
+            'firstname.required' => 'Firstname is required.',
+            'firstname.min' => 'Firstname is too short, minimum of 3 character is required',
+            'firstname.alpha_dash' => 'Invalid name entered for firstname',
+
+            'lastname.required' => 'Lastname is required.',
+            'lastname.min' => 'Lastname is too short, minimum of 3 character is required',
+            'lastname.alpha_dash' => 'Invalid name entered for lastname'
         ];
     }
 }
