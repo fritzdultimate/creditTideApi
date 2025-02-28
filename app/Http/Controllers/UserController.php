@@ -20,7 +20,7 @@ class UserController extends Controller
         $user = $this->userService->findUser(Auth::id());
 
         return response()->json([
-            'user' => $user
+            'user' => $user['message']
         ], 201);
     }
 
