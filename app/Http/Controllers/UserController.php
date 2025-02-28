@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Http\Requests\StoreProfilePictureRequest;
+use App\Http\Requests\UpdateProfileDetails;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +25,8 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function updateProfileDetails(Request $request) {
-        $validated = $request->validate([
+    public function updateProfileDetails(UpdateProfileDetails $request) {
+        $request->validate([
             'firstname' => 'required|max:15|min:3',
             'lastname' => 'required|max:15|min:3',
         ]);
