@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProfileDetailsRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -54,5 +55,14 @@ class UserController extends Controller
         ], $update['code']);
     }
 
-    public function updatePassword(UpdatePasswordRequest $request) {}
+    public function updatePassword(UpdatePasswordRequest $request) {
+        User::where('id', Auth::id())->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return response()->json([
+            'message' => 'Password has been changed successfully.',
+            'done' => true
+        ], 201);
+    }
 }

@@ -22,7 +22,7 @@ class UpdatePasswordRequest extends FormRequest
     public function rules(): array {
         return [
             'password' => 'current_password:web',
-            'new_password' => 'required|confirmed'
+            'new_password' => 'required|confirmed|string|min:8|max:30'
         ];
     }
 
