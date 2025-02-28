@@ -73,6 +73,7 @@ Route::get('/app/user', [UserController::class, 'getUser'])->middleware('auth:sa
 Route::post('/app/user/edit/details', [UserController::class, 'updateProfileDetails'])->middleware('auth:sanctum');
 Route::post('/app/user/edit/password', [UserController::class, 'updatePassword'])->middleware('auth:sanctum');
 Route::post('/app/user/edit/preferences', [UserController::class, 'updatePreferences'])->middleware('auth:sanctum');
+Route::post('/app/user/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 
 Route::post('/app/invest', [InvestmentController::class, 'invest'])->middleware('auth:sanctum');
