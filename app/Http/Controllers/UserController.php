@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfilePictureRequest;
 use App\Http\Requests\UpdateProfileDetails;
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -32,6 +34,20 @@ class UserController extends Controller
         ];
 
         $update = $this->userService->updatedetails($data, Auth::id());
+
+        if($request->hasFile('profile_picture')) {
+            $user = Auth::user();
+            $file = $request->file('profile_picture');
+            $filename = 'profile_' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('uploads/profile/pictures', $filename, 'public');
+
+            if ($user->profile_picture) {
+                Storage::disk('public')->delete(str_replace('/storage/', '', $user->profile_picture));
+            }
+            User::where('id', $user->id)->update([
+                'profile_picture' => "storage/{$filePath}"
+            ]);
+        }
 
         return response()->json([
             'message' => $update['message'],
