@@ -25,7 +25,7 @@ class UserService {
 
     public function updatedetails($data) {
         $update = User::where([
-            'user_id' => Auth::id(),
+            'id' => Auth::id(),
         ])
         ->update($data);
 
