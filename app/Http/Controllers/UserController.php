@@ -27,10 +27,10 @@ class UserController extends Controller
     public function updateProfileDetails(Request $request) {
         $data = [
             'firstname' => $request->firstname,
-            'lastname' => $request->lastname
+            'lastname' => $request->lastname,
         ];
 
-        $update = $this->userService->updatedetails($data);
+        $update = $this->userService->updatedetails($data, Auth::id());
 
         return response()->json([
             'message' => $update['message'],
