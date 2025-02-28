@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProfileDetailsRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -60,8 +61,12 @@ class UserController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
+        $currentSessionId = session()->getId();
         if($request->logout_devices) {
-            Auth::logoutOtherDevices($request->new_password);
+            DB::table('sessions')
+                ->where('user_id', Auth::id())
+                ->where('id', '!=', $currentSessionId)
+                ->delete();
         }
 
         return response()->json([
