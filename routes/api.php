@@ -70,6 +70,8 @@ Route::post('/send-email-verification', [RegistrationController::class, 'resendV
 // ************************************************************************************
 
 Route::get('/app/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
+Route::get('/app/user/edit/details', [UserController::class, 'updateProfileDetails'])->middleware('auth:sanctum');
+
 
 Route::post('/app/invest', [InvestmentController::class, 'invest'])->middleware('auth:sanctum');
 Route::get('/app/transactions', [TransactionController::class, 'transactions'])->middleware('auth:sanctum');
