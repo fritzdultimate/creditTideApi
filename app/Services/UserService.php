@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class UserService {
 
@@ -23,9 +22,9 @@ class UserService {
         ];
     }
 
-    public function updatedetails($data) {
+    public function updatedetails($data, $id) {
         $update = User::where([
-            'id' => Auth::id(),
+            'id' => $id,
         ])
         ->update($data);
 
