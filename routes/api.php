@@ -51,6 +51,7 @@ Route::post("/register", [RegistrationController::class, 'register']);
 Route::post("/login", [LoginController::class, 'login']);
 Route::post('/verify-email-address', [RegistrationController::class, 'verifyEmailAddress']);
 Route::post('/send-email-verification', [RegistrationController::class, 'resendVerification']);
+Route::post('/change-password', [RegistrationController::class, 'changePassword']);
 
 // ****************************************************************************************
 // ****************************************************************************************

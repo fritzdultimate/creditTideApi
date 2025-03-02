@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
+use App\Models\User;
 use App\Services\RegistrationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegistrationController extends Controller
 {
@@ -71,5 +73,30 @@ class RegistrationController extends Controller
                 'error'   => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function changePassword(Request $request) {
+        $user = User::where('email', $request->email)->first();
+        if(!$user) {
+            return response()->json([
+                'message' => 'Access denied, permission issue.',
+                'done' => false
+            ], 400);
+        }
+
+        $request->validate([
+            'password' => 'required|min:8|max:30|confirmed',
+        ]);
+        $user->password = $request->password;
+        $user->save();
+
+        DB::table('sessions')
+            ->where('user_id', $user->id)
+            ->delete();
+
+        return response()->json([
+            'message' => 'Password Change successfully',
+            'done' => true
+        ], 200);
     }
 }

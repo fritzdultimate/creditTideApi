@@ -39,6 +39,13 @@ class RegistrationService
                 'phone' => $data['phone'] ?? null,
                 'invitation_code' => $this->generateUniqueInvitationCode(),
             ]);
+            PasswordResetToken::where('email', $data['email'])->forceDelete(); // purposely deleted all tokens
+            $token = rand(100000, 999999);
+            $token = PasswordResetToken::create([
+                'email' => $data['email'],
+                'token' => $token
+            ]);
+            // send email
 
             Auth::login($user);
 
@@ -127,6 +134,8 @@ class RegistrationService
                 'code' => 404
             ];
         }
+        
+        PasswordResetToken::where('email', $email)->forceDelete(); // purposely deleted all tokens
         $lastToken = PasswordResetToken::where('email', $email)->first();
         if($lastToken && !Carbon::parse($lastToken->created_at)->addHours(2)->isPast()) {
             return [
@@ -178,7 +187,7 @@ class RegistrationService
 
         if(!$token) {
             return [
-                'message' => 'Token is expired, please click on resend email',
+                'message' => "Token is expired, please click on resend email...",
                 'done' => false,
                 'code' => 404
             ];
