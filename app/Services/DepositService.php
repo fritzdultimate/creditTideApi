@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 class DepositService {
 
 
-    public function deposit(array $data): array {
+    public function deposit(array $data) {
         $user = User::find($data['user_id']);
         if(!$user) {
             return [

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SetupAccountRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileDetailsRequest;
 use App\Models\User;
@@ -13,8 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
     protected $userService;
 
     public function __construct(UserService $userService) {
@@ -81,6 +81,23 @@ class UserController extends Controller
         User::where('id', Auth::id())->update([
             $preference => $request->$preference
         ]);
+    }
+
+    public function setupaccount(SetupAccountRequest $request) {
+        User::where('id', Auth::id())->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'country' => $request->country,
+            'city' => $request->city,
+            'residential_address' => $request->residential_address,
+            'place_of_birth' => $request->place_of_birth,
+            'postal_code' => $request->postal_code,
+            'occupation' => $request->occupation
+        ]);
+        return response()->json([
+            'message' => "Account setup was completed",
+            'done' => true
+        ], 201);
     }
 
     

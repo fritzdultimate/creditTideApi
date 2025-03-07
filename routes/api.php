@@ -88,6 +88,7 @@ Route::get('app/user/wallets', [UserWalletController::class, 'getWallets'])->mid
 Route::post('/app/user/wallet/address/change', [UserWalletController::class, 'updateAddress'])->middleware('auth:sanctum');
 
 Route::post('/app/user/deposit', [DepositController::class, 'deposit'])->middleware('auth:sanctum');
+Route::get('/app/user/deposit/{reference}', [DepositController::class, 'getDeposit'])->middleware('auth:sanctum');
 
 Route::post('/app/user/withdraw', [WithdrawalController::class, 'withdraw'])->middleware('auth:sanctum');
 
