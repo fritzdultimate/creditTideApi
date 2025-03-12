@@ -25,7 +25,7 @@ return [
         'https://www.credittidestockcompany.com', 
         'https://credit-tide.vercel.app',
         'https://www.api.credittidestockcompany.com',
-        'https://api.credittidestockcompany.com'
+        // 'https://api.credittidestockcompany.com'
     ],
 
     'allowed_origins_patterns' => [],
