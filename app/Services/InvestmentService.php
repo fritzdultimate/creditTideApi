@@ -31,7 +31,7 @@ class InvestmentService {
      * @return array{message: string, done: string, code: string}
      */
 
-    public function invest(array $data): array {
+    public function invest(array $data) {
         $user = User::find($data['user_id']);
         if(!$user) {
             return [
