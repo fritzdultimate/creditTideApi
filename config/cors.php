@@ -19,7 +19,14 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000', 'http://172.20.10.3:3000', 'https://www.credittidestockcompany.com', 'https://credit-tide.vercel.app'],
+    'allowed_origins' => [
+        'http://localhost:3000', 
+        'http://172.20.10.3:3000', 
+        'https://www.credittidestockcompany.com', 
+        'https://credit-tide.vercel.app',
+        'https://www.api.credittidestockcompany.com',
+        'https://api.credittidestockcompany.com'
+    ],
 
     'allowed_origins_patterns' => [],
 
