@@ -17,7 +17,7 @@ return [
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,https://www.credittidestockcompany.com,https://credittidestockcompany.com,https://www.api.credittidestockcompany.com,::1','www.credittidestockcompany.com','https://api.credittidestockcompany.com',
+        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,https://www.credittidestockcompany.com,https://credittidestockcompany.com,https://www.api.credittidestockcompany.com,::1','www.credittidestockcompany.com','https://www.api.credittidestockcompany.com',
         Sanctum::currentApplicationUrlWithPort()
     ))),
 
