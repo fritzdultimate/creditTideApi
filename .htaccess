@@ -2,12 +2,12 @@
     RewriteEngine On
     
     RewriteCond %{HTTP_HOST} !^www\. [NC]
-    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+    <!-- RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L] -->
     
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "https://www.credittidestockcompanyf.com"
+    Header set Access-Control-Allow-Origin "https://www.credittidestockcompany.com"
     Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, DELETE, PUT"
     Header set Access-Control-Allow-Headers "Content-Type, Authorization"
 </IfModule>
