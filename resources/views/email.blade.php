@@ -26,7 +26,7 @@
             </tr>
             <tr style="padding-top:0">
                 <td>
-                    <h3>
+                    <h3 style="padding:0px 44px;">
                         Your transaction was successful 
                         <img data-emoji="🤑" class="an1" alt="🤑" aria-label="🤑" draggable="false" src="https://fonts.gstatic.com/s/e/notoemoji/16.0/1f911/32.png" loading="lazy">
                         
