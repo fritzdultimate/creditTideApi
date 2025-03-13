@@ -4,7 +4,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <p style="padding-top:40px;text-align:left;font-weight:700;padding:0px 44px;font-size:1rem;font-weight:400;margin-bottom:16px">
+                        <p style="text-align:left;font-weight:700;padding:0px 44px;font-size:1rem;font-weight:400;margin-bottom:16px">
                             Hello {{ $data['name'] }},
                         </p>
                     </td>
