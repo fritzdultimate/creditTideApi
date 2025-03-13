@@ -33,7 +33,7 @@
                                         <td style="font-weight:500;color:#131212;border-bottom:1px solid #e1e1e1;padding-bottom:1.5rem">
                                             OTP
                                         </td>
-                                        <td style="font-weight:300;color:#131212;border-bottom:1px solid #e1e1e1;padding-bottom:1.5rem;text-align:right; padding-left:0;">
+                                        <td style="font-weight:300;color:#131212;border-bottom:1px solid #e1e1e1;padding-bottom:1.5rem;text-align:right; padding-left:5px;">
                                             {{ $data['otp'] }}
                                         </td>
                                     </tr>
