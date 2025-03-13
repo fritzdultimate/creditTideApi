@@ -20,12 +20,12 @@
             line-height: 30px;
             font-size: 1rem;
         }
-        .otp-box {
+        .details {
             width: 100%;
             margin: auto;
             margin-bottom: 2rem;
             border-radius: 8px;
-            background: #f0f6fe;
+            background-color: #f0f6fe;
             padding: 16px;
             border: 1px solid red;
         }
@@ -51,7 +51,7 @@
         <h3 class="email-title">OTP Verification</h3>
         <p class="email-body">The details are shown below:</p>
         
-        <div class="otp-box">
+        <div class="details">
             <div class="otp-row">
                 <span class="otp-label">OTP</span>
                 <span class="otp-value">{{ $data['otp'] }}</span>
