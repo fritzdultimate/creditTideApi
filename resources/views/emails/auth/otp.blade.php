@@ -29,7 +29,7 @@
                         <div style="width:100%;margin:auto;margin-bottom:2rem;border-radius:8px;background:#f0f6fe; padding: 16px; border: 1px solid red">
                             <table style="width:100%;color:#131212;font-size:14px;border-spacing:0;border-collapse:collapse" cellspacing="0">
                                 <tbody>
-                                    <tr style="">
+                                    <tr style="border: 1px solid red; width:100%;">
                                         <td style="font-weight:500;color:#131212;border-bottom:1px solid #e1e1e1;padding-bottom:1.5rem">
                                             OTP
                                         </td>
