@@ -10,7 +10,7 @@
         <div style="width: 48px; height: 48px; background-color: #0369a1; border-radius: 50%; margin: 0 auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);"></div>
         
         <h1 style="font-size: 20px; font-weight: bold; color: #0c4a6e; margin-top: 16px;">Your verification code</h1>
-        <span style="display: block; font-size: 32px; font-weight: bold; color: #0369a1; border: 1px solid #7dd3fc; padding: 16px; margin-top: 8px;">364738</span>
+        <span style="display: block; font-size: 32px; font-weight: bold; color: #0369a1; border: 1px solid #7dd3fc; padding: 16px; margin-top: 8px;">{{ $data['token'] }}</span>
         <p style="font-size: 14px; color: #475569; font-weight: 500; margin-top: 8px;">Do not share this code with anyone!</p>
         
         <div style="background-color: #fef9c3; color: #a16207; padding: 16px; border-radius: 8px; text-align: left; margin-top: 16px;">
@@ -19,7 +19,7 @@
                 Was this request not made by you?
             </span>
             <p style="font-size: 12px; line-height: 1.5; margin-top: 8px;">
-                This code was generated from a request made using Chrome browser on macOS on <strong>12/02/2039</strong>. If you did not initiate this request, you can safely <strong>ignore this email.</strong>
+                This code was generated from a request made using Chrome browser on macOS on <strong>{{ date('D/m/Y') }}</strong>. If you did not initiate this request, you can safely <strong>ignore this email.</strong>
             </p>
         </div>
         
