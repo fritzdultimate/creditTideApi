@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('/email', function () {
     return view('email');
 });
+
+Route::get('/otp', function () {
+    return view('emails.auth.otp');
+});
