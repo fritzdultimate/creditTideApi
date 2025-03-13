@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,4 +13,9 @@ Route::get('/email', function () {
 
 Route::get('/otp', function () {
     return view('emails.auth.otp');
+});
+
+Route::get('/run-queue-worker', function () {
+    Artisan::call('queue:work --tries=3 --timeout=90');
+    return 'Queue worker started!';
 });
