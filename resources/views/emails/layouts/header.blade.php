@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div style="max-width:800px;margin:0 auto;border:0.336601px solid rgba(19,18,18,0.1);border-radius:8px">
+        <div style="max-width:800px;margin:0 auto;border:0.336601px solid rgba(19,18,18,0.1);border-radius:8px; border 1px solid red">
             <table>
                 <tbody style="font-size:10px;color:#1a1a1a;font-weight:500">
                     <tr style="float:left;width:100%;padding:40px 44px">
