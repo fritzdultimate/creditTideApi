@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p style="font-weight:400;line-height:30px;font-size:1rem;padding:0 44px">
+                        <p style="font-weight:400;line-height:30px;font-size:1rem;">
                             The details are shown below:
                         </p>
                     </td>
