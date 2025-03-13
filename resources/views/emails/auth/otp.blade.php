@@ -25,7 +25,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="overflow:hidden;padding:10px 48px">
+                    <td style="overflow:hidden;">
                         <div style="width:100%;max-width:190%;margin:auto;margin-bottom:2rem;padding:1.5rem 1.5rem;padding-bottom:0.5rem;border-radius:8px;background:#f0f6fe">
                             <table style="width:100%;color:#131212;font-size:14px;border-spacing:0;border-collapse:collapse" cellspacing="0">
                                 <tbody>
