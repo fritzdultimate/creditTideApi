@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <div style="">
-            <table>
-                <tbody style="font-size:10px;color:#1a1a1a;font-weight:500">
-                    <tr style="float:left;width:100%">
-                        <td>
-                            <img src="https://ci3.googleusercontent.com/meips/ADKq_NYSXtYT8FrjoxUgbQqnD62RTn7dohUBU3cvOLPsD1DWkycR67F4BkNbVLpw6vtfM4iqcIt426KsgA1Ad2jaxFvuBT18mYWuTSy1Iqje0fbapM5YXRTY2vkRlTTd-1eFAydoQVD-g1WFsT52WVo509nBl-JGTA=s0-d-e1-ft#https://res.cloudinary.com/abokiafrica/image/upload/v1642066376/mail%20template/logo_jrydtr.png" alt="Grey" style="width:120px;height:35px">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $data['subject'] }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .body {
+            padding: 20px;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4a90e2;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #357ab8;
+        }
+    </style>
+</head>
