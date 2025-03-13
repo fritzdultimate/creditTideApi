@@ -10,7 +10,7 @@
                         </td>
                     </tr>
         
-                    <tr style="float:left;width:100%;padding:40px 44px; border:1px solid red">
+                    <tr style="float:left;width:100%; border:1px solid red">
                         <td>
                             <img src="https://ci3.googleusercontent.com/meips/ADKq_Nans0tnJJs6hl3_Nk4-R2phN9PgFWJgIIek9JgUoxj-Ky6ZhdKY5oofDm123VIlyY-Uz7pX_Ki-0ZVBK5MI-DyWUPVmOwG6xqQAOUREWOEN6BHFOAE93I0zSSVnLXj6yKJkspTQpiorRmP6DiefdDSmpTxw=s0-d-e1-ft#https://res.cloudinary.com/abokiafrica/image/upload/v1676651101/mail%20template/logo_white.png" alt="Grey" style="width:120px;height:35px">
                         </td>
