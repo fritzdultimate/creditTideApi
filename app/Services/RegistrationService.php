@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
+use App\Mail\CustomMail;
 use App\Models\PasswordResetToken;
 use App\Models\User;
 use App\Models\Referral;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationService
 {
@@ -150,6 +152,17 @@ class RegistrationService
             'email' => $email,
             'token' => $token
         ]);
+        $app_name = env('APP_NAME');
+        $expires_at = Carbon::parse($token->created_at)->addHours(2);
+        $data = [
+            'view' => 'emails.auth.otp',
+            'subject' => "[$app_name] OTP Verification",
+            'email' => $token->email,
+            'otp' => $token->token,
+            'name' => ucfirst($user->lastname) . ' ' . ucfirst($user->firstname),
+            'expires_at' => $expires_at->format('m/d/Y - g:i A')
+        ];
+        Mail::to($data['email'])->queue(new CustomMail($data));
 
         return [
             'message' => 'Verification token sent to provided email address.',

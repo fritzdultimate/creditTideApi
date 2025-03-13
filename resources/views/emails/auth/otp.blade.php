@@ -5,7 +5,7 @@
                 <tr>
                     <td>
                         <p style="padding-top:40px;text-align:left;font-weight:700;padding:0px 44px;font-size:1rem;font-weight:400;margin-bottom:16px">
-                            Hello Chukwuemeka Darlington,
+                            Hello {{ $data['name'] }},
                         </p>
                     </td>
                 </tr>
@@ -34,7 +34,7 @@
                                             OTP
                                         </td>
                                         <td style="font-weight:300;color:#131212;border-bottom:1px solid #e1e1e1;padding-bottom:1.5rem;text-align:right">
-                                            364833
+                                            {{ $data['otp'] }}
                                         </td>
                                     </tr>
                                     <tr>
