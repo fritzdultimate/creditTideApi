@@ -92,7 +92,7 @@ class UserController extends Controller {
             'residential_address' => $request->residential_address,
             'place_of_birth' => $request->place_of_birth,
             'postal_code' => $request->postal_code,
-            'occupation' => $request->occupation
+            'occupation' => $request->occupation 
         ]);
         return response()->json([
             'message' => "Account setup was completed",
