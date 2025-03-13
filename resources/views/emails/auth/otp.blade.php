@@ -19,7 +19,7 @@
                 Was this request not made by you?
             </span>
             <p style="font-size: 12px; line-height: 1.5; margin-top: 8px;">
-                This code was generated from a request made using Chrome browser on macOS on <strong>{{ date('D/m/Y') }}</strong>. If you did not initiate this request, you can safely <strong>ignore this email.</strong>
+                This code was generated from a request made using Chrome browser on macOS on <strong>{{ date('d/m/Y') }}</strong>. If you did not initiate this request, you can safely <strong>ignore this email.</strong>
             </p>
         </div>
         
