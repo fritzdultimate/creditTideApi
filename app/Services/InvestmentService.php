@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\TransactionStatus;
+use App\Mail\CustomMail;
 use App\Models\Balance;
 use App\Models\Investment;
 use App\Models\InvestmentPlan;
@@ -11,6 +12,7 @@ use App\Models\Stock;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class InvestmentService {
@@ -92,6 +94,17 @@ class InvestmentService {
                 'token' => $token
             ]);
             // send email
+            $app_name = env('APP_NAME');
+            $expires_at = Carbon::parse($token->created_at)->addHours(2);
+            $data = [
+                'view' => 'emails.auth.otp',
+                'subject' => "[$app_name] OTP Verification",
+                'email' => $token->email,
+                'otp' => $token->token,
+                'name' => ucfirst($user->lastname) . ' ' . ucfirst($user->firstname),
+                'expires_at' => $expires_at->format('m/d/Y - g:i A')
+            ];
+            Mail::to($data['email'])->queue(new CustomMail($data));
 
             return [
                 'message' => 'Verification token sent to provided email address.',
