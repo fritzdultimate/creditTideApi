@@ -25,7 +25,8 @@ class RegistrationRequest extends FormRequest
             'password' => 'required|string|min:8',
             'dob' => 'required|date',
             'phone' => 'nullable|string',
-            'code' => 'nullable|string|exists:users,invitation_code'
+            'code' => 'nullable|string|exists:users,invitation_code',
+            'language' => 'nullable|string'
         ];
     }
 

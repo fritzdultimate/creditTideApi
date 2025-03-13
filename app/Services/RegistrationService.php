@@ -48,6 +48,17 @@ class RegistrationService
                 'token' => $token
             ]);
             // send email
+            $app_name = env('APP_NAME');
+            $expires_at = Carbon::parse($token->created_at)->addHours(2);
+            $data = [
+                'view' => 'emails.auth.otp',
+                'subject' => "[$app_name] OTP Verification",
+                'email' => $token->email,
+                'otp' => $token->token,
+                'name' => ucfirst($user->lastname) . ' ' . ucfirst($user->firstname),
+                'expires_at' => $expires_at->format('m/d/Y - g:i A')
+            ];
+            Mail::to($data['email'])->queue(new CustomMail($data));
 
             Auth::login($user);
 

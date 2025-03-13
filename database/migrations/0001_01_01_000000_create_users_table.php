@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('country')->nullable();
+            $table->string('language')->default('english');
             $table->string('place_of_birth')->nullable();
             $table->string('residential_address')->nullable();
             $table->string('city')->nullable();
