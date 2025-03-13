@@ -42,7 +42,7 @@
                                             Expires at:
                                         </td>
                                         <td style="font-weight:300;color:#131212;padding-left:0;text-align:right">
-                                            11/24/2023 - 5:03 PM UTC
+                                            11/24/2023 - 5:03 PM
                                         </td>
                                     </tr>
                                 </tbody>
