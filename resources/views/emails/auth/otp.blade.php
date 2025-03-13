@@ -4,14 +4,14 @@
             <tbody>
                 <tr>
                     <td>
-                        <p style="text-align:left;font-weight:700;padding:0px 44px;font-size:1rem;font-weight:400;margin-bottom:16px">
+                        <p style="text-align:left;font-weight:700;font-size:1rem;font-weight:400;margin-bottom:16px">
                             Hello {{ $data['name'] }},
                         </p>
                     </td>
                 </tr>
                 <tr style="padding-top:0">
                     <td>
-                        <h3 style="padding:0px 44px;">
+                        <h3 style="">
                             OTP Verification
                             
                         </h3>
