@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('investments', unsigned: true)->default(0);
             $table->integer('years')->default(4);
             $table->string('occupation');
+            $table->integer('age')->default(35);
             $table->string('image')->nullable();
             $table->timestamp('started_at');
             $table->timestamps();
