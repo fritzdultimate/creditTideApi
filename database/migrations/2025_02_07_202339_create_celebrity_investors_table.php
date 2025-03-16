@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('withdrawals')->default(0.00);
             $table->integer('investments', unsigned: true)->default(0);
             $table->integer('years')->default(4);
+            $table->string('occupation');
             $table->string('image')->nullable();
             $table->timestamp('started_at');
             $table->timestamps();
