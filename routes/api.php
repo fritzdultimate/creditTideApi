@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CelebrityInvestorController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\InvestmentController;
@@ -30,6 +31,10 @@ Route::prefix('testimonies')->group(function () {
 
 Route::prefix('celebrities')->group(function () {
     Route::get('/', [CelebrityInvestorController::class, 'list']);
+});
+
+Route::prefix('companies')->group(function () {
+    Route::get('/', [CompanyController::class, 'list']);
 });
 
 
