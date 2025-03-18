@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('interval', ['yearly', 'monthly', 'weekly', 'daily', 'hourly'])->default('daily');
             $table->integer('duration'); // Lock-in period  
             $table->decimal('referral_bonus')->default(0);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
