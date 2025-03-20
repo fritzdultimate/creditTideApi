@@ -12,6 +12,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SurveyQuestionController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
@@ -105,6 +106,7 @@ Route::post('/app/user/withdraw', [WithdrawalController::class, 'withdraw'])->mi
 // ************************************************************************************
 Route::get('/stocks', [StockController::class, 'stocks']);
 Route::get('/plans', [PlanController::class, 'plans']);
+Route::get('/survey/questions', [SurveyQuestionController::class, 'getQuestions']);
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
 Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscribe']);
 Route::get('/site/settings', [SiteSettingController::class, 'getSetting']);
