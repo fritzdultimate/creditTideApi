@@ -3,6 +3,7 @@
 use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepositController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\LoginController;
@@ -107,3 +108,5 @@ Route::get('/plans', [PlanController::class, 'plans']);
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
 Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscribe']);
 Route::get('/site/settings', [SiteSettingController::class, 'getSetting']);
+
+Route::post('/contact-us/email', [EmailController::class, 'sendEmail']);

@@ -23,7 +23,8 @@ class SendEmailRequest extends FormRequest
             'email' => 'required|email',
             'message' => 'required|min:30',
             'firstname' => 'required|min:2',
-            'lastname' => 'required|min:2'         
+            'lastname' => 'required|min:2',
+            'subject' => 'required'       
         ];
     }
 
