@@ -4,6 +4,7 @@ use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\LoginController;
@@ -106,6 +107,7 @@ Route::post('/app/user/withdraw', [WithdrawalController::class, 'withdraw'])->mi
 // ************************************************************************************
 Route::get('/stocks', [StockController::class, 'stocks']);
 Route::get('/plans', [PlanController::class, 'plans']);
+Route::get('/faqs', [FaqController::class, 'getFaqs']);
 Route::get('/survey/questions', [SurveyQuestionController::class, 'getQuestions']);
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
 Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscribe']);
