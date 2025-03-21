@@ -10,6 +10,7 @@ use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\StockController;
@@ -108,6 +109,8 @@ Route::post('/app/user/withdraw', [WithdrawalController::class, 'withdraw'])->mi
 Route::get('/stocks', [StockController::class, 'stocks']);
 Route::get('/plans', [PlanController::class, 'plans']);
 Route::get('/faqs', [FaqController::class, 'getFaqs']);
+Route::get('/policies/categories', [PolicyController::class, 'getPolicyCategories']);
+Route::get('/policies/{category}', [PolicyController::class, 'getPolicy']);
 Route::get('/survey/questions', [SurveyQuestionController::class, 'getQuestions']);
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
 Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscribe']);
