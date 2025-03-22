@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepositController;
@@ -109,8 +110,13 @@ Route::post('/app/user/withdraw', [WithdrawalController::class, 'withdraw'])->mi
 Route::get('/stocks', [StockController::class, 'stocks']);
 Route::get('/plans', [PlanController::class, 'plans']);
 Route::get('/faqs', [FaqController::class, 'getFaqs']);
+
 Route::get('/policies/categories', [PolicyController::class, 'getPolicyCategories']);
 Route::get('/policies/{category}', [PolicyController::class, 'getPolicy']);
+
+Route::get('/blogs/categories', [BlogController::class, 'getBlogCategories']);
+Route::get('/policies/{category}', [BlogController::class, 'getBlogs']);
+
 Route::get('/survey/questions', [SurveyQuestionController::class, 'getQuestions']);
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
 Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscribe']);
