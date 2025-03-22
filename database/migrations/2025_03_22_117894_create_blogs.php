@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->longText('content');
             $table->string('author');
             $table->string('author_picture');
-            $table->string('love_count');
+            $table->integer('love_count')->default(0);
             $table->integer('order')->default(0);
             $table->timestamps();
         });
