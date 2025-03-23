@@ -115,7 +115,11 @@ Route::get('/policies/categories', [PolicyController::class, 'getPolicyCategorie
 Route::get('/policies/{category}', [PolicyController::class, 'getPolicy']);
 
 Route::get('/blogs/categories', [BlogController::class, 'getBlogCategories']);
-Route::get('/policies/{category}', [BlogController::class, 'getBlogs']);
+Route::get('/blogs/{category}', [BlogController::class, 'getBlogs']);
+
+Route::get('/post/item/{id}/like', [BlogController::class, 'love']);
+Route::get('/post/item/{id}/unlike', [BlogController::class, 'unlove']);
+Route::get('/post/{slug}', [BlogController::class, 'getPost']);
 
 Route::get('/survey/questions', [SurveyQuestionController::class, 'getQuestions']);
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);

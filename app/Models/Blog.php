@@ -21,7 +21,7 @@ class Blog extends Model {
     ];
 
     public function category() {
-        return $this->hasOne(BlogCategory::class);
+        return $this->belongsTo(BlogCategory::class, 'blog_category_id');
     }
     public static function boot() {
         parent::boot();
