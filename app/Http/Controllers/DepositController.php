@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DepositController extends Controller
 {
-    protected $depositController;
+    protected $depositService;
 
-    public function __construct(DepositService $depositController) {
-        $this->depositController = $depositController;
+    public function __construct(DepositService $depositService) {
+        $this->depositService = $depositService;
     }
 
     public function deposit(Request $request) {
         try {
-            $result = $this->depositController->deposit([
+            $result = $this->depositService->deposit([
                 'user_id' => Auth::id(),
                 'user_wallet_id' => $request->user_wallet_id,
                 'amount' => $request->amount,

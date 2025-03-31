@@ -120,6 +120,20 @@ class DepositService {
 
             if($deposit) {
                 // send email
+                $app_name = env('APP_NAME');
+                $data = [
+                    'view' => 'emails.deposit.request',
+                    'subject' => "[$app_name] Deposit Initiated",
+                    'email' => $deposit->user->email,
+                    'symbol' => $deposit->userWallet->adminWallet->symbol,
+                    'amount' => $deposit->amount,
+                    'username' => $deposit->user->username,
+                    'wallet' => $deposit->userWallet->adminWallet->name,
+                    'reference' => $deposit->reference,
+                    'name' => ucfirst($user->lastname) . ' ' . ucfirst($user->firstname),
+                ];
+                Mail::to($data['email'])->queue(new CustomMail($data));
+
                 $transaction = Transaction::create([
                     'user_id' => $deposit->user->id,
                     'type' => 'deposit',
