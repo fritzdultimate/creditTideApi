@@ -45,8 +45,8 @@ class UserController extends Controller {
             // $filePath = $file->storeAs('uploads/profile/pictures', $filename, 'public');
             $file->move(public_path('storage/uploads/profile/pictures'), $filename);
 
-            $imagePath = public_path('storage/uploads/profile/pictures/' . $filename);
             if ($user->profile_picture) {
+                $imagePath = public_path('storage/uploads/profile/pictures/' . $user->profile_picture);
                 if (File::exists($imagePath)) {
                     File::delete($imagePath);
                 }
