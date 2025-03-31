@@ -6,10 +6,8 @@
     <title>Verification Email</title>
 </head>
 <body style="margin: 0; padding: 0; width: 100%; height: 100%; background-color: #f0f9ff; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center;">
-    <div style="width: 100%; max-width: 400px; padding: 20px; text-align: center; background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <div style="width: 200px; height: auto; margin: 0 auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); ">
-            <img src="{{ asset('logo/credit-tide.PNG') }}" style="width: 100%; height: 100%" />
-        </div>
+    < style="width: 100%; max-width: 400px; padding: 20px; text-align: center; background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <img src="{{ asset('logo/credit-tide.PNG') }}" style="width: 100%; height: 100%" />
         
         <h1 style="font-size: 20px; font-weight: bold; color: #0c4a6e;">Your verification code</h1>
         <span style="display: block; font-size: 32px; font-weight: bold; color: #0369a1; border: 1px solid #7dd3fc; padding: 16px; margin-top: 8px;">{{ $data['otp'] }}</span>
