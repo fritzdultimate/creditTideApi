@@ -11,7 +11,7 @@
             <img src="{{ asset('logo/credit-tide.PNG') }}" style="width: 100%; height: 100%" />
         </div>
         
-        <h1 style="font-size: 20px; font-weight: bold; color: #0c4a6e; margin-top: 16px;">Your verification code</h1>
+        <h1 style="font-size: 20px; font-weight: bold; color: #0c4a6e;">Your verification code</h1>
         <span style="display: block; font-size: 32px; font-weight: bold; color: #0369a1; border: 1px solid #7dd3fc; padding: 16px; margin-top: 8px;">{{ $data['otp'] }}</span>
         <p style="font-size: 14px; color: #475569; font-weight: 500; margin-top: 8px;">Do not share this code with anyone!</p>
         
