@@ -131,7 +131,6 @@ class DepositService {
                     'wallet' => $deposit->userWallet->adminWallet->name,
                     'reference' => $deposit->reference,
                     'date' => $deposit->created_at,
-                    'name' => ucfirst($user->lastname) . ' ' . ucfirst($user->firstname),
                 ];
                 Mail::to($data['email'])->queue(new CustomMail($data));
 
