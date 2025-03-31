@@ -11,6 +11,7 @@ use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,13 +42,17 @@ class UserController extends Controller {
             $user = Auth::user();
             $file = $request->file('profile_picture');
             $filename = 'profile_' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('uploads/profile/pictures', $filename, 'public');
+            // $filePath = $file->storeAs('uploads/profile/pictures', $filename, 'public');
+            $file->move(public_path('storage/uploads/profile/pictures'), $filename);
 
+            $imagePath = public_path('storage/uploads/profile/pictures/' . $filename);
             if ($user->profile_picture) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $user->profile_picture));
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+                }
             }
             User::where('id', $user->id)->update([
-                'profile_picture' => "storage/{$filePath}"
+                'profile_picture' => "storage/uploads/profile/pictures/" . $filename
             ]);
         }
 
