@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CelebrityInvestorController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CryptoController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FaqController;
@@ -127,3 +128,14 @@ Route::post('/newsletter/unsubscribe', [NewsletterController::class, 'unsubscrib
 Route::get('/site/settings', [SiteSettingController::class, 'getSetting']);
 
 Route::post('/contact-us/email', [EmailController::class, 'sendEmail']);
+
+
+
+
+
+
+
+
+
+
+Route::get('/crypto-price', [CryptoController::class, 'getPrice']);
