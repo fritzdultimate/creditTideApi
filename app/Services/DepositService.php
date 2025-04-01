@@ -59,7 +59,7 @@ class DepositService {
             ];
         }
 
-        if(!$data['token']) {
+        if(empty($data['token'])) {
             PasswordResetToken::where([
                 'email' => $user->email,
             ])->forceDelete();
