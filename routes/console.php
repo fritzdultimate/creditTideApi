@@ -2,6 +2,7 @@
 
 use App\Mail\CustomMail;
 use App\Models\Deposit;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -19,6 +20,7 @@ Schedule::call(function () {
 
     foreach ($deposits as $deposit) {
         $deposit->update(['status' => 'cancelled']);
+        Transaction::where('reference', $deposit->reference)->update(['status' => 'cancelled']);
 
         // Send email to user
         $app_name = env('APP_NAME');

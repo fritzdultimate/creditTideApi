@@ -43,7 +43,7 @@ class UserWalletService {
             ];
         }
         return [
-            'message' => 'Something went wrong while trying to perform the action.v' . $data['admin_wallet_id'],
+            'message' => 'Something went wrong while trying to perform the action.' . $data['admin_wallet_id'],
             'done' => true,
             'code' => 400
         ];
