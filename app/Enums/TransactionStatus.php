@@ -7,4 +7,5 @@ enum TransactionStatus: string {
     case PROCESSING = 'processing';
     case COMPLETED = 'completed';
     case REJECT = 'reject';
+    case CANCELLED = 'cancelled';
 }
