@@ -9,7 +9,7 @@
                 </h3>
             </span>
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 15px; color: rgb(22, 22, 26); font-family: 'Inter', sans-serif;">
-                Your deposit request of ${{ number_format($data['amount'], 2) }} has been <strong style="color: rgb(173, 20, 20)">cancelled</strong>, you can still create a new deposit request.
+                Your deposit request of ${{ number_format($data['amount'], 2) }} has been <strong style="color: rgb(173, 20, 20)">cancelled</strong>, you can still create a new deposit request. Please contact our billing support team at {{ env('BILLING_EMAIL') }} if you had already made payment, note that terms & conditions applies.
             </p>
 
             <p style="margin-top: 5px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(18, 18, 19); font-family: 'Inter', sans-serif;">
