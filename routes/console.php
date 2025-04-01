@@ -24,7 +24,7 @@ Schedule::call(function () {
         $app_name = env('APP_NAME');
         $data = [
             'view' => 'emails.deposit.cancelled',
-            'subject' => "[$app_name] Deposit Initiated",
+            'subject' => "[$app_name] Deposit Cancelled",
             'email' => $deposit->user->email,
             'symbol' => $deposit->userWallet->adminWallet->symbol,
             'amount' => $deposit->amount,
