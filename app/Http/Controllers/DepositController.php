@@ -31,7 +31,7 @@ class DepositController extends Controller
             
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Deposit failed. ' . $e->getMessage(),
+                'message' => 'Deposit failed. ' . $e->getMessage() . ' ' . $e->getLine(),
                 'error'   => $e->getMessage(),
             ], 500);
         }

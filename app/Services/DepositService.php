@@ -144,7 +144,7 @@ class DepositService {
 
                 PasswordResetToken::where([
                     'email' => $user->email,
-                    'token' => $data['token']
+                    // 'token' => $data['token']
                 ])->forceDelete();
 
                 $deposit = Deposit::with(['userWallet.adminWallet'])->find($deposit->id);
