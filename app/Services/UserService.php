@@ -13,7 +13,7 @@ class UserService {
      * @return array
     */
     public function findUser($id) {
-        $user = User::with('balance')->find($id);
+        $user = User::with(['balance', 'referrals.user'])->find($id);
 
         return [
             'message' => $user,

@@ -58,4 +58,12 @@ class User extends Authenticatable
             $user->balance()->create();
         });
     }
+
+    public function referrals() {
+        return $this->hasMany(Referral::class, 'referrer_id');
+    }
+
+    public function referrer() {
+    return $this->belongsTo(Referral::class, 'user_id'); 
+}
 }
