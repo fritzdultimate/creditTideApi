@@ -30,7 +30,6 @@ class RegistrationService
      * @throws \Exception
      */
     public function register(array $data): User {
-        // Use a transaction so that if anything fails, all changes are rolled back.
         return DB::transaction(function () use ($data) {
             // Create the new user.
             $user = User::create([
@@ -59,12 +58,9 @@ class RegistrationService
                 'expires_at' => $expires_at->format('m/d/Y - g:i A')
             ];
             Mail::to($data['email'])->queue(new CustomMail($data));
-
-            Auth::login($user);
-
-            // If an invitation code was provided, try to locate the referring user.
-            if (!empty($data['invitation_code'])) {
-                $referrer = User::where('invitation_code', $data['invitation_code'])->first();
+            $invitation_code = $data['code'];
+            if (!empty($invitation_code)) {
+                $referrer = User::where('invitation_code', $invitation_code)->first();
                 if ($referrer) {
                     // Create a direct referral relationship.
                     Referral::create([
@@ -77,6 +73,7 @@ class RegistrationService
                     $this->addReferralChain($referrer, $user);
                 }
             }
+            Auth::login($user);
 
             return $user;
         });
