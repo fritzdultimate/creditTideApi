@@ -19,9 +19,9 @@ class RegistrationController extends Controller
 
     public function register(RegistrationRequest $request) {
         $data = $request->validated();
-        return response()->json([
-            'message' => $data,
-        ], 400);
+        // return response()->json([
+        //     'message' => $data,
+        // ], 400);
 
         try {
             if(!empty($request->register)) {
