@@ -31,6 +31,7 @@ class RegistrationService
      */
     public function register(array $data): User {
         return DB::transaction(function () use ($data) {
+            $invitation_code = $data['code'];
             // Create the new user.
             $user = User::create([
                 'username' => $data['username'],
@@ -58,7 +59,6 @@ class RegistrationService
                 'expires_at' => $expires_at->format('m/d/Y - g:i A')
             ];
             Mail::to($data['email'])->queue(new CustomMail($data));
-            $invitation_code = $data['code'];
             if (!empty($invitation_code)) {
                 $referrer = User::where('invitation_code', $invitation_code)->first();
                 if ($referrer) {
