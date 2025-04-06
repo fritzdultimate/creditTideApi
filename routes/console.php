@@ -111,4 +111,4 @@ Schedule::call(function () {
 
 Schedule::call(function() {
     getStockPrice();
-})->everyFourMinutes();
+})->everyOddHour();
