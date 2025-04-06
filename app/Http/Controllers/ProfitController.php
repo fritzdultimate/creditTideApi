@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\TransactionStatus;
 use App\Jobs\User\DepositProfitEmail;
+use App\Mail\CustomMail;
 use App\Models\Balance;
 use App\Models\Deposits;
 use App\Models\Interest;
@@ -113,7 +114,7 @@ class ProfitController extends Controller
                     $investment->save();
                     $accountBalanceAfter = $investment->current_value;
 
-                    Interest::create([
+                    $interest = Interest::create([
                         'user_id' => $investment->user->id,
                         'investment_id' => $investment->id,
                         'amount_deposited' => $investment->amount,
@@ -124,6 +125,20 @@ class ProfitController extends Controller
                     ]);
 
                     // send email for profit
+                    $app_name = env('APP_NAME');
+                    $data = [
+                        'view' => 'emails.investment.profit',
+                        'subject' => "[$app_name] Investment Returns",
+                        'email' => $investment->user->email,
+                        'invested_amount' => $investment->amount,
+                        'profit' => $interestToBeReceived,
+                        'username' => $investment->user->username,
+                        'plan' => $investment->plan->name,
+                        'stock' => $investment->stock->name,
+                        'reference' => $interest->transaction_id,
+                        'date' => $investment->updated_at,
+                    ];
+                    Mail::to($data['email'])->queue(new CustomMail($data));
 
                     $interestsCount = Interest::where([
                         'investment_id' => $investment->id,
