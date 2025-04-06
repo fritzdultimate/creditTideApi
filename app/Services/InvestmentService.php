@@ -14,6 +14,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
 
 class InvestmentService {
 
@@ -34,6 +35,9 @@ class InvestmentService {
      */
 
     public function invest(array $data) {
+        $agent = new Agent();
+        $browser = $agent->browser();
+        $platform = $agent->platform();
         $user = User::find($data['user_id']);
         if(!$user) {
             return [
@@ -102,7 +106,9 @@ class InvestmentService {
                 'email' => $token->email,
                 'otp' => $token->token,
                 'name' => ucfirst($user->lastname) . ' ' . ucfirst($user->firstname),
-                'expires_at' => $expires_at->format('m/d/Y - g:i A')
+                'expires_at' => $expires_at->format('m/d/Y - g:i A'),
+                'browser' => $browser,
+                'platform' => $platform
             ];
             Mail::to($data['email'])->queue(new CustomMail($data));
 
@@ -158,6 +164,8 @@ class InvestmentService {
                     'stock' => $investment->stock->name,
                     'plan' => $investment->plan->name,
                     'date' => $investment->created_at,
+                    'browser' => $browser,
+                    'platform' => $platform
                 ];
                 Mail::to($data['email'])->queue(new CustomMail($data));
 
