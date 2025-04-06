@@ -171,7 +171,7 @@ class InvestmentService {
 
                 PasswordResetToken::where([
                     'email' => $user->email,
-                    'token' => $data['token']
+                    'token' => $token->token
                 ])->forceDelete();
 
                 return [
