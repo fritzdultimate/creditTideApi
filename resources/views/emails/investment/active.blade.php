@@ -9,7 +9,7 @@
                 </h3>
             </span>
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                Your investment of ${{ number_format($amount, 2) }} on {{ ucfirst($data['stock']) }} Stock and {{ ucfirst($data['plan']) }} Plan was successfull.
+                Your investment of ${{ number_format($data['amount'], 2) }} on {{ ucfirst($data['stock']) }} Stock and {{ ucfirst($data['plan']) }} Plan was successfull.
             </p>
 
             <span style="font-size:35px; font-weight: bold; line-height: 12px; color: rgb(27, 27, 186);letter-spacing:3px;">${{ number_format($data['amount'], 2) }}</span>
