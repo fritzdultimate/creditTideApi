@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfitController;
 use App\Mail\CustomMail;
 use App\Models\Deposit;
 use App\Models\Transaction;
@@ -68,4 +69,7 @@ function cancelPendingDeposit() {
 Schedule::call(function () {
     cancelPendingDeposit();
     cancelPendingWithdrawal();
+
+    $handler = new ProfitController();
+    $handler();
 })->everyFiveMinutes();

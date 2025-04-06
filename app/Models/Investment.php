@@ -34,4 +34,8 @@ class Investment extends Model {
     public function plan() {
         return $this->belongsTo(InvestmentPlan::class);
     }
+
+    public function interests() {
+        return $this->hasMany(Interest::class);
+    }
 }
