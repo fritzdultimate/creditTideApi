@@ -140,12 +140,12 @@ class ProfitController extends Controller
                     ];
                     Mail::to($data['email'])->queue(new CustomMail($data));
 
-                    $interestsCount = Interest::where([
+                    $interests = Interest::where([
                         'investment_id' => $investment->id,
                         'user_id' => $investment->user->id
-                    ])->count();
+                    ]);
 
-                    if($interestsCount >= $investment->plan->duration) {
+                    if($interests->count() >= $investment->plan->duration) {
                         Investment::where('id', $investment->id)->update([
                             'status' => 'completed',
                             'active' => false
@@ -153,6 +153,24 @@ class ProfitController extends Controller
                         
                         Balance::where('user_id', $investment->user->id)->decrement('locked_balance', $investment->current_value);
                         Balance::where('user_id', $investment->user->id)->increment('balance', $investment->current_value);
+
+
+                        // send email for completed investment
+                    $app_name = env('APP_NAME');
+                    $data = [
+                        'view' => 'emails.investment.completed',
+                        'subject' => "[$app_name] Investment Ended",
+                        'email' => $investment->user->email,
+                        'invested_amount' => $investment->amount,
+                        'username' => $investment->user->username,
+                        'plan' => $investment->plan->name,
+                        'stock' => $investment->stock->name,
+                        'interest_count' => $interests->count(),
+                        'interest_sum' => $interests->sum('interest'),
+                        'date' => $investment->updated_at,
+                        'reference' => $investment->reference
+                    ];
+                    Mail::to($data['email'])->queue(new CustomMail($data));
                     }
 
                     // DB::commit();
