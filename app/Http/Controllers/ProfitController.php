@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\TransactionStatus;
-use App\Jobs\User\DepositProfitEmail;
 use App\Mail\CustomMail;
 use App\Models\Balance;
-use App\Models\Deposits;
 use App\Models\Interest;
 use App\Models\Investment;
-use App\Modules\Users\Interests;
-use App\Modules\Users\UserWallets;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -23,7 +17,7 @@ class ProfitController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request) {
+    public function __invoke() {
         // $this->currentDate = Carbon::parse('2023-12-06 10:43:04');
         $this->index();
     }
