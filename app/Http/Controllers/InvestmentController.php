@@ -31,7 +31,7 @@ class InvestmentController extends Controller
             
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Investment failed. ' . $e->getMessage(),
+                'message' => 'Investment failed. ' . $e->getMessage() . ' ' . $e->getLine(),
                 'error'   => $e->getMessage(),
             ], 500);
         }
