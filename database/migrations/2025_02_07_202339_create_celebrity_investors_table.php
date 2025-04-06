@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('occupation');
             $table->integer('age')->default(35);
             $table->string('image')->nullable();
+            $table->timestamp('dob')->nullable();
+            $table->timestamp('joined_at')->nullable();
+            $table->integer('priority')->default(0);
             $table->timestamp('started_at');
             $table->timestamps();
         });
