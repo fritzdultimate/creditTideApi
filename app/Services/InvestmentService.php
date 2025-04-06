@@ -34,6 +34,7 @@ class InvestmentService {
      */
 
     public function invest(array $data) {
+        $receivedToken = $data['token'];
         $user = User::find($data['user_id']);
         if(!$user) {
             return [
