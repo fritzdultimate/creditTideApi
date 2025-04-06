@@ -123,6 +123,20 @@ class WithdrawalService {
 
             if($withdrawal) {
                 // send email
+                $app_name = env('APP_NAME');
+                $data = [
+                    'view' => 'emails.withdrawal.request',
+                    'subject' => "[$app_name] Withdrawal Initiated",
+                    'email' => $withdrawal->user->email,
+                    'symbol' => $withdrawal->userWallet->adminWallet->symbol,
+                    'amount' => $withdrawal->amount,
+                    'username' => $withdrawal->user->username,
+                    'wallet' => $withdrawal->userWallet->adminWallet->name,
+                    'reference' => $withdrawal->reference,
+                    'date' => $withdrawal->created_at,
+                ];
+                Mail::to($data['email'])->queue(new CustomMail($data));
+
                 $transaction = Transaction::create([
                     'user_id' => $withdrawal->user->id,
                     'type' => 'withdrawal',

@@ -3,6 +3,7 @@
 use App\Mail\CustomMail;
 use App\Models\Deposit;
 use App\Models\Transaction;
+use App\Models\Withdrawal;
 use Carbon\Carbon;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -13,7 +14,32 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::call(function () {
+function cancelPendingWithdrawal() {
+    $withdrawals = Withdrawal::where('status', 'pending')
+        ->where('created_at', '<=', Carbon::now()->subHours(24))
+        ->get();
+
+    foreach ($withdrawals as $withdrawal) {
+        $withdrawal->update(['status' => 'cancelled']);
+        Transaction::where('reference', $withdrawal->reference)->update(['status' => 'cancelled']);
+
+        // Send email to user
+        $app_name = env('APP_NAME');
+        $data = [
+            'view' => 'emails.withdrawal.cancelled',
+            'subject' => "[$app_name] Withdrawal Cancelled",
+            'email' => $withdrawal->user->email,
+            'symbol' => $withdrawal->userWallet->adminWallet->symbol,
+            'amount' => $withdrawal->amount,
+            'username' => $withdrawal->user->username,
+            'wallet' => $withdrawal->userWallet->adminWallet->name,
+            'reference' => $withdrawal->reference,
+            'date' => $withdrawal->updated_at,
+        ];
+        Mail::to($data['email'])->queue(new CustomMail($data));
+    }
+}
+function cancelPendingDeposit() {
     $deposits = Deposit::where('status', 'pending')
         ->where('created_at', '<=', Carbon::now()->subHours(2))
         ->get();
@@ -37,4 +63,9 @@ Schedule::call(function () {
         ];
         Mail::to($data['email'])->queue(new CustomMail($data));
     }
+}
+
+Schedule::call(function () {
+    cancelPendingDeposit();
+    cancelPendingWithdrawal();
 })->everyFiveMinutes();
