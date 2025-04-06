@@ -26,4 +26,12 @@ class Investment extends Model {
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function stock() {
+        return $this->belongsTo(Stock::class);
+    }
+
+    public function plan() {
+        return $this->belongsTo(InvestmentPlan::class);
+    }
 }
