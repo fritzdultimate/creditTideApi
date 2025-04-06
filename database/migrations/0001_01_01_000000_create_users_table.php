@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('occupation_industry')->nullable();
             $table->string('occupation')->nullable();
             $table->boolean('onboarded')->default(false);
+            $table->boolean('is_suspended')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
