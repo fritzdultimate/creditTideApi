@@ -7,7 +7,7 @@
 </head>
 <body style="margin: 0; padding: 0; width: 100%; height: 100%; background-color: #f0f9ff; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center;">
     <div style="width: 100%; max-width: 400px; padding: 20px; text-align: center; background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <img src="{{ asset('logo/credit-tide-512-x-512.png') }}" style="width: 100px; height: 100px" />
+        <img src="{{ asset('logo/credit-tide-512-x-512.png') }}" style="width: 100px; height: 100px; margin-bottom: 10px" />
         
         <h1 style="font-size: 20px; font-weight: bold; color: #0c4a6e;">Your verification code</h1>
         <span style="display: block; font-size: 32px; font-weight: bold; color: #0369a1; border: 1px solid #7dd3fc; padding: 16px; margin-top: 8px;">{{ $data['otp'] }}</span>
