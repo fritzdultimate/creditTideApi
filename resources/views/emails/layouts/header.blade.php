@@ -13,7 +13,7 @@
                                             <tr>
                                                 <td style="padding: 10px 0; background-color: #ffffff;">
                                                     <div class="m_-3852285001892450277img-container">
-                                                        <img style="width: 400px; height:300px"
+                                                        <img style="width: 100px; height:100px"
                                                             src="{{ asset('logo/credit-tide-512-x-512.png') }}"
                                                             class="m_-3852285001892450277img CToWUd"
                                                             data-bit="iit"
