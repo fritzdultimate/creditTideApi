@@ -30,7 +30,7 @@ class WithdrawalController extends Controller
             
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Deposit failed.',
+                'message' => 'Withdrawal failed.',
                 'error'   => $e->getMessage(),
             ], 500);
         }

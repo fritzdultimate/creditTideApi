@@ -147,7 +147,7 @@ class WithdrawalService {
 
                 PasswordResetToken::where([
                     'email' => $user->email,
-                    'token' => $data['token']
+                    'token' => $token->token
                 ])->forceDelete();
 
                 $withdrawal = Withdrawal::with(['userWallet.adminWallet'])->find($withdrawal->id);
