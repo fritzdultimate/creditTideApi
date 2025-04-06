@@ -17,7 +17,7 @@ class InvestmentPlan extends Model {
         'updated_at'
     ];
 
-    public function investments() {
-        return $this->hasMany(Investment::class);
-    }
+    // public function investments() {
+    //     return $this->hasMany(Investment::class);
+    // }
 }

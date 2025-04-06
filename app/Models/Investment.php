@@ -32,7 +32,7 @@ class Investment extends Model {
     }
 
     public function plan() {
-        return $this->belongsTo(InvestmentPlan::class);
+        return $this->belongsTo(InvestmentPlan::class, 'investment_plan_id');
     }
 
     public function interests() {
