@@ -148,18 +148,18 @@ class InvestmentService {
                 Balance::where('user_id', $investment->user->id)->increment('locked_balance', $data['amount']);
 
                 // send email
-                $app_name = env('APP_NAME');
-                $data = [
-                    'view' => 'emails.investment.active',
-                    'subject' => "[$app_name] New Investment Created",
-                    'email' => $investment->user->email,
-                    'amount' => $investment->amount,
-                    'username' => $investment->user->username,
-                    'stock' => $investment->stock->name,
-                    'plan' => $investment->plan->name,
-                    'date' => $investment->created_at,
-                ];
-                Mail::to($data['email'])->queue(new CustomMail($data));
+                // $app_name = env('APP_NAME');
+                // $data = [
+                //     'view' => 'emails.investment.active',
+                //     'subject' => "[$app_name] New Investment Created",
+                //     'email' => $investment->user->email,
+                //     'amount' => $investment->amount,
+                //     'username' => $investment->user->username,
+                //     'stock' => $investment->stock->name,
+                //     'plan' => $investment->plan->name,
+                //     'date' => $investment->created_at,
+                // ];
+                // Mail::to($data['email'])->queue(new CustomMail($data));
 
                 $transaction = Transaction::create([
                     'user_id' => $investment->user->id,
