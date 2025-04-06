@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Jenssegers\Agent\Agent;
 
 class CustomMail extends Mailable implements ShouldQueue
 {
@@ -19,7 +20,12 @@ class CustomMail extends Mailable implements ShouldQueue
      * Create a new message instance.
      */
     public function __construct(array $data) {
+        $agent = new Agent();
+        $browser = $agent->browser();
+        $platform = $agent->platform();
         $this->data = $data;
+        $this->data['browser'] = $browser;
+        $this->data['platform'] = $platform;
     }
 
     /**
