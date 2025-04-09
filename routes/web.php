@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Filament\Facades\Filament;
 
-Filament::routes();
+// Filament::routes();
 
 Route::get('/', function () {
     return view('welcome');
