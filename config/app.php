@@ -2,6 +2,13 @@
 
 return [
 
+    // 'providers' => [
+    //     /*
+    //     * Package Service Providers...
+    //     */
+    //     Filament\FilamentServiceProvider::class,
+    // ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
