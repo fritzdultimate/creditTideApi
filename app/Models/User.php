@@ -26,6 +26,7 @@ class User extends Authenticatable implements FilamentUser {
         'phone',
         'invitation_code'
     ];
+    protected $appends = ['total_invested'];
 
     public function canAccessPanel(Panel $panel): bool {
         return str_ends_with($this->email, '.com') && $this->hasVerifiedEmail(); 
@@ -67,7 +68,15 @@ class User extends Authenticatable implements FilamentUser {
         return $this->hasMany(Referral::class, 'referrer_id');
     }
 
+    public function investments() {
+        return $this->hasMany(Investment::class, 'user_id');
+    }
+
     public function referrer() {
         return $this->belongsTo(Referral::class, 'user_id'); 
+    }
+
+    public function getTotalInvestedAttribute() {
+        return $this->investments->sum('amount');
     }
 }
