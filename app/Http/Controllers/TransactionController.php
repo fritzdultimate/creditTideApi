@@ -17,7 +17,7 @@ class TransactionController extends Controller
 
     public function transactions(Request $request) {
         $offset = $request->query('offset', 0);
-        $limit = $request->query('limit', 5);
+        $limit = $request->query('limit', 3);
         $result = $this->transactionService->getTransactions($offset, $limit);
 
         return response()->json([
