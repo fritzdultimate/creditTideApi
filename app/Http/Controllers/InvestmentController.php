@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Investment;
 use App\Services\InvestmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,5 +36,35 @@ class InvestmentController extends Controller
                 'error'   => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function activeInvestments(Request $request) {
+        $offset = $request->query('offset', 0);
+        $limit = $request->query('limit', 3);
+
+        $investments = Investment::where([
+            'user_id' => Auth::id(),
+            'status' => 'active'
+        ])
+            ->orderBy('created_at', 'desc')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+        
+        return response()->json([
+            'message' => $investments,
+        ], 200);
+    }
+
+    public function sumActiveInvestment(Request $request) {
+        $type = $request->query('type', 'current_value');
+        $sum = Investment::where([
+            'user_id' => Auth::id(),
+            'status' => 'acive'
+        ])->sum($type);
+
+        return response()->json([
+            'message' => $sum,
+        ], 200);
     }
 }
