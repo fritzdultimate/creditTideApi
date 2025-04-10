@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TransactionStatus;
 use App\Mail\CustomMail;
 use App\Models\Balance;
 use App\Models\Interest;
 use App\Models\Investment;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -108,6 +110,7 @@ class ProfitController extends Controller
                     $investment->save();
                     $accountBalanceAfter = $investment->current_value;
 
+                    $txnId = generate_random_string(new Interest(), 'transaction_id', 'INV-');
                     $interest = Interest::create([
                         'user_id' => $investment->user->id,
                         'investment_id' => $investment->id,
@@ -115,8 +118,18 @@ class ProfitController extends Controller
                         'interest' => $interestToBeReceived,
                         'balance_before' => $accountBalanceBefore > 0 ? $accountBalanceBefore : 0,
                         'balance_after' => $accountBalanceAfter > 0 ? $accountBalanceAfter : 0,
-                        'transaction_id' => generate_random_string(new Interest(), 'transaction_id', 'INV-')
+                        'transaction_id' => $txnId
                     ]);
+
+                    if($interest) {
+                        Transaction::create([
+                            'user_id' => $investment->user->id,
+                            'type' => 'profit',
+                            'status' => TransactionStatus::COMPLETED,
+                            'amount' => $interestToBeReceived,
+                            'reference' => $txnId
+                        ]);
+                    }
 
                     // send email for profit
                     $app_name = env('APP_NAME');
