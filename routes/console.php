@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfitController;
 use App\Mail\CustomMail;
 use App\Models\Deposit;
 use App\Models\Stock;
@@ -104,9 +103,6 @@ function getStockPrice() {
 Schedule::call(function () {
     cancelPendingDeposit();
     cancelPendingWithdrawal();
-
-    $handler = new ProfitController();
-    $handler();
 })->everyFiveMinutes();
 
 Schedule::call(function() {
