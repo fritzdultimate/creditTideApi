@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfitController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Filament\Facades\Filament;
@@ -15,3 +16,6 @@ Route::get('/run-queue-worker', function () {
     Artisan::call('queue:work --tries=3 --timeout=90');
     return 'Queue worker started!';
 });
+
+
+Route::get('/cron/job/exec', ProfitController::class);
