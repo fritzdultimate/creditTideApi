@@ -89,6 +89,8 @@ Route::get('/app/transactions', [TransactionController::class, 'transactions'])-
 Route::get('/app/transactions/{id}', [TransactionController::class, 'getTransaction'])->middleware('auth:sanctum');
 Route::get('/app/grouped/transactions', [TransactionController::class, 'getGroupedTransaction'])->middleware('auth:sanctum');
 
+Route::get('/app/investments/sum', [InvestmentController::class, 'sumActiveInvestment'])->middleware('auth:sanctum');
+
 
 Route::get('app/user/wallets', [UserWalletController::class, 'getWallets'])->middleware('auth:sanctum');
 Route::post('/app/user/wallet/address/change', [UserWalletController::class, 'updateAddress'])->middleware('auth:sanctum');
