@@ -77,6 +77,6 @@ class User extends Authenticatable implements FilamentUser {
     }
 
     public function getTotalInvestedAttribute() {
-        return $this->investments->sum('amount');
+        return $this->investments->where(['status' => 'active'])->sum('current_value');
     }
 }
