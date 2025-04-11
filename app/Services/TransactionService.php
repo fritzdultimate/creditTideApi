@@ -30,7 +30,7 @@ class TransactionService {
     }
 
     public function getTransaction($id) {
-        $transaction = Transaction::with('user')->where([
+        $transaction = Transaction::with(['user', 'investment.plan', 'investment.stock'])->where([
             'user_id' => Auth::id(),
             'id' => $id
         ])->first();
