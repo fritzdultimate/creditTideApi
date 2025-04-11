@@ -25,4 +25,12 @@ class Transaction extends Model {
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    // public function investment() {
+    //     return $this->hasOne(Investment::class, 'transaction_id', 'transaction_id');
+    // }
+
+    public function investment() {
+        return $this->hasOne(Investment::class, 'reference', 'reference');
+}
 }
