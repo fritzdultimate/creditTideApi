@@ -90,6 +90,7 @@ Route::get('/app/transactions/{id}', [TransactionController::class, 'getTransact
 Route::get('/app/grouped/transactions', [TransactionController::class, 'getGroupedTransaction'])->middleware('auth:sanctum');
 
 Route::get('/app/investments/sum', [InvestmentController::class, 'sumActiveInvestment'])->middleware('auth:sanctum');
+Route::get('/app/investments/{id}', [InvestmentController::class, 'getInvestment'])->middleware('auth:sanctum');
 
 
 Route::get('app/user/wallets', [UserWalletController::class, 'getWallets'])->middleware('auth:sanctum');

@@ -25,4 +25,8 @@ class Interest extends Model {
     public function investment() {
         return $this->belongsTo(Investment::class);
     }
+
+    public function transaction() {
+        return $this->belongsTo(Transaction::class, 'reference', 'transaction_id');
+    }
 }

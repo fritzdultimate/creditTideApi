@@ -67,4 +67,15 @@ class InvestmentController extends Controller
             'message' => $sum,
         ], 200);
     }
+
+    public function getInvestment($id) {
+        $investment = Investment::with(['user', 'stock', 'plan', 'interests.transaction'])->where([
+            'id' => $id,
+            'user_id' => Auth::id()
+        ])->first();
+
+        return response()->json([
+            'message' => $investment,
+        ], 200);
+    }
 }
