@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfitController;
+use App\Http\Controllers\ThirdPartyController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Filament\Facades\Filament;
@@ -19,3 +20,5 @@ Route::get('/run-queue-worker', function () {
 
 
 Route::get('/cron/job/exec', ProfitController::class);
+
+Route::get('/update/stocks/value', [ThirdPartyController::class, 'getStockPrice']);
