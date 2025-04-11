@@ -15,6 +15,7 @@ class Investment extends Model {
         'start_date',
         'end_date',
         'status',
+        'reference',
         'created_at',
         'updated_at'
     ];
@@ -37,5 +38,9 @@ class Investment extends Model {
 
     public function interests() {
         return $this->hasMany(Interest::class);
+    }
+
+    public function transaction() {
+        return $this->belongsTo(Transaction::class, 'reference', 'reference');
     }
 }
