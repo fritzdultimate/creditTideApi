@@ -73,7 +73,7 @@ class User extends Authenticatable implements FilamentUser {
     }
 
     public function referrer() {
-        return $this->belongsTo(Referral::class, 'user_id'); 
+        return $this->belongsTo(Referral::class, 'user_id');
     }
 
     public function getTotalInvestedAttribute() {
