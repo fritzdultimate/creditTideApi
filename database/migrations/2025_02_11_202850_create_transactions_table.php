@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->enum('type', ['deposit', 'withdrawal', 'investment', 'profit', 'loss', 'referral_bonus']);
-            $table->enum('status', ['pending', 'processing', 'completed', 'rejected', 'cancelled', 'approved'])->default('pending');
+            $table->enum('status', ['pending', 'processing', 'completed', 'rejected', 'cancelled', 'approved', 'active'])->default('pending');
             $table->decimal('amount', 15, 2);
             $table->string('reference')->unique();
             $table->timestamps();
