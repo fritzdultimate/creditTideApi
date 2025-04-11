@@ -134,13 +134,15 @@ class InvestmentService {
             }
 
             // Create investment now
+            $reference = $this->generatePaymentReference();
             $investment = Investment::create([
                 'user_id' => $data['user_id'],
                 'investment_plan_id' => $data['investment_plan_id'],
                 'stock_id' => $data['stock_id'],
                 'amount' => $data['amount'],
                 'current_value' => $data['amount'],
-                'start_date' => now()
+                'start_date' => now(),
+                'reference' => $reference
             ]);
 
             if($investment) {
@@ -164,9 +166,9 @@ class InvestmentService {
                 $transaction = Transaction::create([
                     'user_id' => $investment->user->id,
                     'type' => 'investment',
-                    'status' => TransactionStatus::COMPLETED,
+                    'status' => TransactionStatus::ACTIVE,
                     'amount' => $data['amount'],
-                    'reference' => $this->generatePaymentReference()
+                    'reference' => $reference
                 ]);
 
                 PasswordResetToken::where([
