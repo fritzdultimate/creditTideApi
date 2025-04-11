@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SetupAccountRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileDetailsRequest;
+use App\Models\Investment;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -13,12 +15,29 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserController extends Controller {
     protected $userService;
+    protected function generatePaymentReference(): string {
+        return 'INV-' . now()->timestamp . strtoupper(Str::random(6));
+    }
 
     public function __construct(UserService $userService) {
+        $investments = Investment::where('reference', null)->get();
+        foreach($investments as $investment) {
+            $reference = $this->generatePaymentReference();
+            $investment->reference = $reference;
+            $investment->save();
+
+            Transaction::where([
+                'user_id' => $investment->user->id,
+                'amount' => $investment->amount,
+                'type' => 'investment'
+            ])->update([
+                'reference' => $reference
+            ]);
+        }
         $this->userService = $userService;
     }
 
