@@ -8,4 +8,5 @@ enum TransactionStatus: string {
     case COMPLETED = 'completed';
     case REJECT = 'reject';
     case CANCELLED = 'cancelled';
+    case ACTIVE = 'active';
 }
