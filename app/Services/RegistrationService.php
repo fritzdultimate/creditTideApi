@@ -68,9 +68,20 @@ class RegistrationService
                         'referrer_id' => $referrer->id,
                         'level'       => 1,
                     ]);
+                    // send email to the user who referred
+                    $app_name = env('APP_NAME');
+                    $data = [
+                        'view' => 'emails.auth.referrer',
+                        'subject' => "[$app_name] 🎉 New Referral Alert: A User You Invited Just Registered!",
+                        'email' => $referrer->email,
+                        'username' => $referrer->username,
+                        'invited_username' => $user->username,
+                        'date' => $user->created_at,
+                    ];
+                    Mail::to($data['email'])->queue(new CustomMail($data));
 
                     // Optionally, add referral links up to 5 levels deep.
-                    $this->addReferralChain($referrer, $user);
+                    // $this->addReferralChain($referrer, $user);
                 }
             }
             Auth::login($user);

@@ -33,6 +33,7 @@ class Transaction extends Model {
     public function investment() {
         return $this->hasOne(Investment::class, 'reference', 'reference');
     }
+    
     public function interest() {
         return $this->hasOne(Interest::class, 'transaction_id', 'reference');
     }

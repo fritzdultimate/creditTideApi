@@ -68,6 +68,17 @@ class User extends Authenticatable implements FilamentUser {
         return $this->hasMany(Referral::class, 'referrer_id');
     }
 
+    public function referredBy() {
+        return $this->hasOneThrough(
+            User::class,
+            Referral::class,
+            'user_id',
+            'id',
+            'id',
+            'referrer_id'
+        );
+    }
+
     public function investments() {
         return $this->hasMany(Investment::class, 'user_id');
     }

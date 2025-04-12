@@ -8,10 +8,12 @@ use App\Models\Balance;
 use App\Models\Investment;
 use App\Models\InvestmentPlan;
 use App\Models\PasswordResetToken;
+use App\Models\ReferralBonus;
 use App\Models\Stock;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -170,6 +172,45 @@ class InvestmentService {
                     'amount' => $data['amount'],
                     'reference' => $reference
                 ]);
+
+                // IF USER IS REFERRED BY ANOTHER USER
+                if($investment->user->referredBy) {
+                    $referred_by = $investment->user->referredBy;
+                    $plan_bonus = floatval($investment->plan->referral_bonus ?? 0);
+                    DB::transaction(function () use ($referred_by, $investment, $plan_bonus) {
+                        $bonus = $investment->amount * 0.01 * $plan_bonus;
+                        $referralBonus = ReferralBonus::firstOrCreate([
+                            'user_id' => $referred_by->id,
+                            'referred_user_id' => $investment->user->id,
+                        ], [
+                            'bonus' => $investment->amount * 0.01 * $plan_bonus,
+                            'investment_id' => $investment->id,
+                        ]);
+    
+                        if($referralBonus->wasRecentlyCreated) {
+                            Transaction::create([
+                                'user_id' => $referred_by->id,
+                                'type' => 'referral_bonus',
+                                'status' => TransactionStatus::COMPLETED,
+                                'amount' => $bonus,
+                                'reference' => $this->generatePaymentReference()
+                            ]);
+                            Balance::where('user_id', $referred_by->id)->increment('balance', $bonus);
+                            // send email
+                            $app_name = env('APP_NAME');
+                            $data = [
+                                'view' => 'emails.investment.bonus',
+                                'subject' => "[$app_name] 🎉 You’ve just earned a referral bonus!",
+                                'email' => $referred_by->email,
+                                'username' => $referred_by->username,
+                                'bonus' => $bonus,
+                                'invited_username' => $investment->user->username,
+                                'date' => $referralBonus->created_at,
+                            ];
+                            Mail::to($data['email'])->queue(new CustomMail($data));
+                        }
+                    });
+                }
 
                 PasswordResetToken::where([
                     'email' => $user->email,
