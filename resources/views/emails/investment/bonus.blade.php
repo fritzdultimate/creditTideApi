@@ -5,24 +5,24 @@
         <td style="padding-bottom: 10px; font-size: 14px; font-family: 'Inter', sans-serif; color: #a4a3ad;">
             <span class="im">
                 <h3 class="m_-3852285001892450277transactions-paragraph">
-                    Referral Bonus
+                    Referral Bonus Received.
                 </h3>
             </span>
-            <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">Hi {{ $data['username'] }},</p>
+            <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">Hi <strong>{{ $data['username'] }}</strong>,</p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                Great news! You’ve just received a referral bonus of ${{ number_format($data['bonus'], 2) }}.
+                Great news! You’ve just received a referral bonus of <span style="color: #28a745; font-weight: bold;">${{ number_format($data['bonus'], 2) }}</span>.
             </p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                This bonus was awarded because someone you referred ({{ $data['invited_username'] ?? 'a user you invited' }}) just made a new investment on our platform.
+                This bonus was awarded because someone you referred (<span style="font-style: italic;">{{ $data['invited_username'] ?? 'a user you invited' }}</span>) just made a new investment on our platform.
             </p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
                 Thanks for spreading the word and helping grow our community!
             </p>
 
-            <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
+            <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-family: 'Inter', sans-serif; font-size: 18px; color: #333;">
                 Keep referring and earn even more bonuses. 💰
             </p>
 
