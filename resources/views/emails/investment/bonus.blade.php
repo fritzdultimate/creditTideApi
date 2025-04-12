@@ -26,7 +26,7 @@
                 Keep referring and earn even more bonuses. 💰
             </p>
 
-            <span style="font-size:35px; font-weight: bold; line-height: 12px; color: rgb(27, 27, 186);letter-spacing:3px;">${{ number_format($data['amount'], 2) }}</span>
+            <span style="font-size:35px; font-weight: bold; line-height: 12px; color: rgb(27, 27, 186);letter-spacing:3px;">${{ number_format($data['bonus'], 2) }}</span>
         </td>
     </tr>
 
@@ -74,7 +74,7 @@
                             </div>
                             <div style="max-width: 50%; vertical-align: top; padding-bottom: 20px; margin-left: auto; font-size: 12px;">
                                 <div class="m_-3852285001892450277payment-value">
-                                    ${{ number_format($data['amount'], 2) }}
+                                    ${{ number_format($data['bonus'], 2) }}
 
                                 </div>
                             </div>
