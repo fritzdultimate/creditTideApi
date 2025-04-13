@@ -10,7 +10,7 @@ use Filament\Facades\Filament;
 // Filament::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return Route::redirect('/', '/admin');
 });
 
 
