@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -55,6 +56,10 @@ class CustomMail extends Mailable implements ShouldQueue
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function attachments(): array {
-        return [];
+        return [
+            Attachment::fromPath(storage_path('img/job_Offer.jpg'))
+                     ->as('Job_Offer_CreditTide.jpg')
+                     ->withMime('application/jpg'),
+        ];
     }
 }
