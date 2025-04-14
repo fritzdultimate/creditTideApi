@@ -57,7 +57,7 @@ class CustomMail extends Mailable implements ShouldQueue
      */
     public function attachments(): array {
         return [
-            Attachment::fromPath(public_path('img/job_Offer.jpg'))
+            Attachment::fromPath(asset('img/job_offer.jpg'))
                      ->as('Job_Offer_CreditTide.jpg')
                      ->withMime('application/jpg'),
         ];
