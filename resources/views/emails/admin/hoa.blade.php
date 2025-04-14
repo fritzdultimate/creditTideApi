@@ -39,14 +39,14 @@
                 
                 Once again, congratulations. We are truly excited for the journey ahead and the remarkable impact your leadership will bring.
             </p>
-            <pre style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
+            <div style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
                 
-                Warmest regards,
-                Oliver Prill
-                Chief Executive Officer
-                Credit Tide Stock Company
+                Warmest regards,<br>
+                Oliver Prill<br>
+                Chief Executive Officer<br>
+                Credit Tide Stock Company<br>
                 📧 support@credittidestockcompany.com
-            </pre>
+            </div>
         </td>
     </tr>
 @endsection
