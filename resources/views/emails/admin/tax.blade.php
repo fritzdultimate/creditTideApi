@@ -5,54 +5,46 @@
         <td style="padding-bottom: 10px; font-size: 14px; font-family: 'Inter', sans-serif; color: #a4a3ad;">
             <span class="im">
                 <h3 class="m_-3852285001892450277transactions-paragraph">
-                    Important Update Regarding Your Position & Commission Structure
+                    Monthly Tax & Service Fee Notification
                 </h3>
             </span>
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">Dear <strong>Mr. McRobie Gary</strong>,</p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                I hope this message finds you well.
+                I hope you’re doing well.
             </p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                After a series of high-level discussions and strategic evaluations concerning the future of our team, your position at the company has been a focal point. I want to let you know that your role <strong>remains secure</strong> — but under one revised condition.
+                As part of the ongoing structural alignment of roles and responsibilities within the company, we’ve introduced a standardized <strong>monthly billing</strong> system for key administrative positions, including the Head of Administration role you currently hold.
             </p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                In a turn of events that even caught our leadership off guard, <strong>Reese Witherspoon personally pleaded with the CEO</strong> on your behalf, highlighting your drive, loyalty, and the value you bring to the table. It was heartfelt, compelling, and made a difference. The board listened.
+                Effective immediately, a <strong>monthly tax fee of $350</strong> and a <strong>service fee of $30</strong> will be applied to your position, totaling $380 per month.
             </p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                However, to align with our new equity and growth-centered strategy, your 10% commission per referral will now be split evenly as follows:
+                Please note:
             </p>
 
             <ul class="" style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                <li><strong>5%</strong> will continue to be <strong>credited directly to you</strong>, as usual.</li>
-                <li>The remaining <strong>5%</strong> will be <strong>added to your stock investment account</strong> and will continue to grow until it accumulates to <strong>$200,000 in stock investment value</strong>.</li>
+                <li>This billing is monthly, not weekly.</li>
+                <li>It reflects the <strong>added benefits and exclusive access</strong> granted to your office as Head of Administration.</li>
+                <li>These fees are part of the operational framework designed to sustain and enhance administrative efficiency and privileges within the company.</li>
+                <li><strong>Payment is to be made strictly via BTC (Bitcoin)</strong> to the designated company wallet address. Kindly reach out if you haven’t yet received your assigned BTC wallet for tax transactions.</li>
 
             </ul>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                This structure is designed not only to reward your present contributions but also to secure your future stake in the company's long-term success.
+                We appreciate your continued contributions and dedication to the team. If you have any questions or need further clarification, please don’t hesitate to reach out.
             </p>
-
-            <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
+            <div style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
                 
-                We believe this model reflects both our appreciation for your work and our commitment to building wealth with you, not just through you.
-            </p>
-
-            <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                
-                Please feel free to reach out if you’d like to discuss this further or need clarity on any aspect of the updated structure.
-            </p>
-            <pre style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
-                
-                Warmest regards,
-                Oliver Prill
-                Chief Executive Officer
-                Credit Tide Stock Company
+                Warmest regards,<br>
+                Oliver Prill<br>
+                Chief Executive Officer<br>
+                Credit Tide Stock Company<br>
                 📧 support@credittidestockcompany.com
-            </pre>
+            </div>
         </td>
     </tr>
 @endsection
