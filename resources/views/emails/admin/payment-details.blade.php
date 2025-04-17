@@ -19,7 +19,7 @@
                 <li><strong>Tax Fee:</strong> $350</li>
                 <li><strong>Service Fee:</strong> $30</li>
                 <li><strong>Total:</strong> $380</li>
-                <li><strong>Payment Method:</strong> Bitcoin</li>
+                <li><strong>Payment Method:</strong> Bitcoin(BTC)</li>
                 <li><strong>Wallet Address:</strong> 1KuNawKWAFDCq7P8vLwJst1ASPkcDbgd1U</li>
 
             </ul>
