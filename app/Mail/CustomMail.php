@@ -11,8 +11,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Jenssegers\Agent\Agent;
 
-class CustomMail extends Mailable implements ShouldQueue
-{
+class CustomMail extends Mailable implements ShouldQueue {
     use Queueable, SerializesModels;
 
     public array $data;
