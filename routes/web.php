@@ -5,9 +5,7 @@ use App\Http\Controllers\ProfitController;
 use App\Http\Controllers\ThirdPartyController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-use Filament\Facades\Filament;
 
-// Filament::routes();
 
 Route::get('/', function () {
     return Route::redirect('/', '/admin');
