@@ -13,6 +13,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\PushNotificationController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\StockController;
@@ -24,6 +25,9 @@ use App\Http\Controllers\UserWalletController;
 use App\Http\Controllers\WithdrawalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+Route::post('/subscribe', [PushNotificationController::class, 'subscribe']);
+Route::post('/send', [PushNotificationController::class, 'send']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
