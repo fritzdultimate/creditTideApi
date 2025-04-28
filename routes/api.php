@@ -27,7 +27,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/subscribe', [PushNotificationController::class, 'subscribe']);
-Route::post('/send', [PushNotificationController::class, 'send']);
+Route::get('/send/{userId}', [PushNotificationController::class, 'send']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

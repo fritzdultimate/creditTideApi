@@ -10,12 +10,14 @@ use Minishlink\WebPush\Subscription;
 class PushNotificationController extends Controller {
     public function subscribe(Request $request) {
         $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
             'endpoint' => 'required|url|unique:push_subscriptions,endpoint',
             'keys.p256dh' => 'required|string',
             'keys.auth' => 'required|string',
         ]);
 
         PushSubscription::create([
+            'user_id' => $validated['user_id'],
             'endpoint' => $validated['endpoint'],
             'public_key' => $validated['keys']['p256dh'],
             'auth_token' => $validated['keys']['auth'],
@@ -24,8 +26,12 @@ class PushNotificationController extends Controller {
         return response()->json(['success' => true]);
     }
 
-    public function send(Request $request) {
-        $subscriptions = PushSubscription::all();
+    public function send($userId) {
+        $subscription = PushSubscription::where('user_id', $userId)->first();
+
+        if (!$subscription) {
+            return response()->json(['error' => 'User subscription not found.'], 404);
+        }
 
         $webPush = new WebPush([
             'VAPID' => [
@@ -35,22 +41,20 @@ class PushNotificationController extends Controller {
             ],
         ]);
 
-        foreach ($subscriptions as $sub) {
-            $subscription = Subscription::create([
-                'endpoint' => $sub->endpoint,
-                'publicKey' => $sub->public_key,
-                'authToken' => $sub->auth_token,
-            ]);
+        $userSubscription = Subscription::create([
+            'endpoint' => $subscription->endpoint,
+            'publicKey' => $subscription->public_key,
+            'authToken' => $subscription->auth_token,
+        ]);
 
-            $webPush->queueNotification(
-                $subscription,
-                json_encode([
-                    'title' => 'Hello from Laravel!',
-                    'body' => 'This is a push notification.',
-                    'icon' => '/favicon.ico',
-                ])
-            );
-        }
+        $webPush->queueNotification(
+            $userSubscription,
+            json_encode([
+                'title' => 'Hello from Laravel!',
+                'body' => 'This is a push notification.',
+                'icon' => '/favicon.ico',
+            ])
+        );
 
         foreach ($webPush->flush() as $report) {
             $endpoint = $report->getRequest()->getUri()->__toString();
