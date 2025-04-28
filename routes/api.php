@@ -26,7 +26,7 @@ use App\Http\Controllers\WithdrawalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/subscribe', [PushNotificationController::class, 'subscribe']);
+Route::post('/subscribe', [PushNotificationController::class, 'subscribe'])->middleware('auth:sanctum');
 Route::get('/send/{userId}', [PushNotificationController::class, 'send']);
 
 Route::get('/user', function (Request $request) {
