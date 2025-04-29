@@ -71,7 +71,7 @@
                             <p style="font-size: 10px !important; text-align: center; line-height: 0px; font-family: 'Inter', sans-serif; color: #929292;">
                                 See our
                                 <a
-                                    href=""
+                                    href="https://www.credittidestockcompany.com/policies/payment"
                                     style="color: #ef2c5a; text-decoration: none;"
                                     target="_blank"
                                 >
@@ -79,7 +79,7 @@
                                 </a>
                                 or visit our
                                 <a
-                                    href=""
+                                    href="https://www.credittidestockcompany.com/contact-us"
                                     style="color: #ef2c5a; text-decoration: none;"
                                     target="_blank"
                                 >
