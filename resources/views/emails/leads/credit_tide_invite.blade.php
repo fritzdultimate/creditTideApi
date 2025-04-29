@@ -20,7 +20,7 @@
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
                 🎁 <strong>Limited-Time Offer:</strong> Join through this link and get early access + referral bonuses: <br>
-                <a href="{{ $data['affiliateLink'] }}">Join Credit Tide Now</a>
+                <a href="https://www.credittidestockcompany.com/auth/sign/up?ref=F9DB9232">Join Credit Tide Now</a>
             </p>
 
             <p style="margin-top: 10px; margin-bottom: 20px; width: 100%; font-size: 13px; color: rgb(13, 13, 14); font-family: 'Inter', sans-serif;">
