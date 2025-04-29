@@ -84,7 +84,7 @@ class CronJobsController extends Controller {
 
             $lead->update(['email_sent' => true]);
         }
-        Mail::to('fritzdultimate@gmail.com')->queue(new CustomMail($data));
+        // Mail::to('fritzdultimate@gmail.com')->queue(new CustomMail($data));
 
     }
 }
