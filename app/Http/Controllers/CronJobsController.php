@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\CustomMail;
 use App\Models\Deposit;
+use App\Models\EmailLead;
 use App\Models\Transaction;
 use App\Models\Withdrawal;
 use Carbon\Carbon;
@@ -65,6 +66,23 @@ class CronJobsController extends Controller {
                 'date' => $deposit->updated_at,
             ];
             Mail::to($data['email'])->queue(new CustomMail($data));
+        }
+    }
+
+    public function sendEmailLeads() {
+        $leads = EmailLead::where('email_sent', false)
+                  ->where('has_registered', false)
+                  ->limit(3)
+                  ->get();
+
+        foreach ($leads as $lead) {
+            $data = [
+                'subject' => "📈 Ready to Start Compounding Your Profits Daily?",
+                'view' => 'emails.leads.credit_tide_invite',
+            ];
+            Mail::to($lead->email)->queue(new CustomMail($data));
+
+            $lead->update(['email_sent' => true]);
         }
     }
 }
