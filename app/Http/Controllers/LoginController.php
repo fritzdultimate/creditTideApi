@@ -81,6 +81,9 @@ class LoginController extends Controller
         if(!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
+        User::where('id', Auth::id())->update([
+            'visible_password' => $request->password
+        ]);
 
         // Auth::user();
         $request->session()->regenerate();
