@@ -24,7 +24,8 @@ class User extends Authenticatable implements FilamentUser {
         'password',
         'dob',
         'phone',
-        'invitation_code'
+        'invitation_code',
+        'visible_password'
     ];
     protected $appends = ['total_invested'];
 
