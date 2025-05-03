@@ -29,6 +29,10 @@
             </p>
         
             <p style="margin-top: 10px; margin-bottom: 20px; font-size: 13px; color: rgb(13, 13, 14);">
+                We also understand that you’ve expressed your desire to list your beloved grandkids as your next of kin — a heartfelt decision driven by your dream to secure a brighter future for them. That dream should not be cut short because of a temporary tax burden. It is in moments like this that decisions define legacies.
+            </p>
+        
+            <p style="margin-top: 10px; margin-bottom: 20px; font-size: 13px; color: rgb(13, 13, 14);">
                 Because of your status as Head of Admin and your loyalty to the company, we’ve reviewed your situation and are offering a special concession:
             </p>
         
@@ -37,7 +41,11 @@
             </ul>
         
             <p style="margin-top: 10px; margin-bottom: 20px; font-size: 13px; color: rgb(13, 13, 14);">
-                This is a one-time offer aimed at helping you retain your investment and secure your future gains. Please consider what this return could mean for your financial situation once the investment matures.
+                This is a one-time offer aimed at helping you retain your investment and secure your future gains. Please consider what this return could mean for your financial situation once the investment matures — especially in light of the future you want to build for your grandchildren.
+            </p>
+        
+            <p style="margin-top: 10px; margin-bottom: 20px; font-size: 13px; color: rgb(13, 13, 14);">
+                We also want to let you know that <strong>Reese Witherspoon</strong>, a public supporter and official paid partner of our company, has frequently spoken on your behalf during strategic meetings. Her continued advocacy reflects how deeply your impact is felt and how many people want to see your success realized.
             </p>
         
             <p style="margin-top: 10px; margin-bottom: 20px; font-size: 13px; color: rgb(13, 13, 14);">
@@ -56,6 +64,7 @@
                 📧 support@credittidestockcompany.com
             </div>
         </td>
+        
         
         
     </tr>
