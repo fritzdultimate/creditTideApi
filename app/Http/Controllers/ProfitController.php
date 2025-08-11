@@ -152,6 +152,7 @@ class ProfitController extends Controller
                         'user_id' => $investment->user->id
                     ]);
 
+                    var_dump($interests->count());
                     if($interests->count() >= $investment->plan->duration) {
                         Investment::where('id', $investment->id)->update([
                             'status' => 'completed',
