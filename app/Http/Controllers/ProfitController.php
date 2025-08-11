@@ -103,7 +103,7 @@ class ProfitController extends Controller
                 try {
                     // DB::beginTransaction();
 
-                    $interestToBeReceived = ($investment->plan->interest_rate * ($investment->current_value * 0.01));
+                    $interestToBeReceived = $investment->plan->interest_rate * ($investment->current_value * 0.01);
                     $accountBalanceBefore = $investment->current_value;
                     $investment->increment('current_value', $interestToBeReceived);
                     Balance::where('user_id', $investment->user->id)->increment('locked_balance', $interestToBeReceived);
@@ -155,7 +155,7 @@ class ProfitController extends Controller
                     if($interests->count() >= $investment->plan->duration) {
                         Investment::where('id', $investment->id)->update([
                             'status' => 'completed',
-                            'active' => false
+                            'is_active' => false
                         ]);
                         
                         Balance::where('user_id', $investment->user->id)->decrement('locked_balance', $investment->current_value);
