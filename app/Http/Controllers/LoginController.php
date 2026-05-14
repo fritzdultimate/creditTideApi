@@ -46,6 +46,7 @@ class LoginController extends Controller
                 'verification' => true
             ]);
         }
+
         if($user->two_factor_enabled && !empty($token)) {
             $token = PasswordResetToken::where([
                 'email' => $user->email,
@@ -87,7 +88,12 @@ class LoginController extends Controller
 
         // Auth::user();
         $request->session()->regenerate();
+
+        $token = $user->createToken('api-token')->plainTextToken;
         return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'user' => $user,
             'message' => "Login was successful",
             'loggedin' => true
         ]);
