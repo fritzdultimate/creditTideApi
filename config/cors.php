@@ -24,7 +24,7 @@ return [
         'http://172.20.10.3:3000', 
         'https://www.credittidestockcompany.com', 
         'https://app.credittidestockcompany.com',
-        'https://api.credittidestockcompany.com',
+        // 'https://api.credittidestockcompany.com',
         'https://credittidestockcompany.com',
     ],
 
