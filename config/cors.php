@@ -24,7 +24,7 @@ return [
         'http://172.20.10.3:3000', 
         'https://www.credittidestockcompany.com', 
         'https://credit-tide.vercel.app',
-        'https://www.api.credittidestockcompany.com',
+        // 'https://www.api.credittidestockcompany.com',
         'https://www.app.credittidestockcompany.com',
         'https://credit-tide.netlify.app',
     ],
