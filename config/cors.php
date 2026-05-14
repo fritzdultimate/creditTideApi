@@ -25,7 +25,7 @@ return [
         'https://www.credittidestockcompany.com', 
         'https://credit-tide.vercel.app',
         // 'https://www.api.credittidestockcompany.com',
-        'https://www.app.credittidestockcompany.com',
+        'https://app.credittidestockcompany.com',
         'https://credit-tide.netlify.app',
     ],
 
