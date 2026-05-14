@@ -1,13 +1,23 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
+    # CRITICAL: Do NOT redirect OPTIONS requests (CORS preflight)
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ public/$1 [L]
+    
+    # Force www ONLY for main domain (not API subdomain)
     RewriteCond %{HTTP_HOST} !^www\. [NC]
+    RewriteCond %{HTTP_HOST} !^api\. [NC]
     RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
     
+    # Route everything through public folder
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
 <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "https://www.credittidestockcompany.com"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, DELETE, PUT"
-    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    Header always set Access-Control-Allow-Origin "https://app.credittidestockcompany.com"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With, Accept"
+    Header always set Access-Control-Allow-Credentials "true"
+    Header always set Access-Control-Max-Age "3600"
 </IfModule>
