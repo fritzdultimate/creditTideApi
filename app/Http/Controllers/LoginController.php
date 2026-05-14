@@ -87,13 +87,13 @@ class LoginController extends Controller
         ]);
 
         // Auth::user();
-        // $request->session()->regenerate();
+        $request->session()->regenerate();
 
-        $token = $user->createToken('api-token')->plainTextToken;
+        // $token = $user->createToken('api-token')->plainTextToken;
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'user' => $user,
+            // 'access_token' => $token,
+            // 'token_type' => 'Bearer',
+            // 'user' => $user,
             'message' => "Login was successful",
             'loggedin' => true
         ]);
