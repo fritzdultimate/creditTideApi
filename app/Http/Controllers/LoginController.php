@@ -87,7 +87,7 @@ class LoginController extends Controller
         ]);
 
         // Auth::user();
-        $request->session()->regenerate();
+        // $request->session()->regenerate();
 
         $token = $user->createToken('api-token')->plainTextToken;
         return response()->json([
