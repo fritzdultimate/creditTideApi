@@ -13,11 +13,3 @@
     # Route everything through public folder
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
-
-<IfModule mod_headers.c>
-    Header always set Access-Control-Allow-Origin "https://app.credittidestockcompany.com"
-    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS, PATCH"
-    Header always set Access-Control-Allow-Headers "Origin, Content-Type, Authorization, X-Requested-With, X-XSRF-TOKEN, Accept"
-    Header always set Access-Control-Allow-Credentials "true"
-    Header always set Access-Control-Max-Age "3600"
-</IfModule>
