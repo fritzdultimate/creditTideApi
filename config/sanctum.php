@@ -21,11 +21,10 @@ return [
     //     Sanctum::currentApplicationUrlWithPort()
     // ))),
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,app.credittidestockcompany.com',
-        Sanctum::currentApplicationUrlWithPort()
-    ))),
+    'stateful' => explode(',', env(
+        'SANCTUM_STATEFUL_DOMAINS',
+        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,app.credittidestockcompany.com,www.credittidestockcompany.com,credit-tide.netlify.app'
+    )),
 
     /*
     |--------------------------------------------------------------------------
