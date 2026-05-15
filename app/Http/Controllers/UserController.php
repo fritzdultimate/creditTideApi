@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\SetupAccountRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileDetailsRequest;
@@ -17,15 +16,19 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
     protected $userService;
-    protected function generatePaymentReference(): string {
-        return 'INV-' . now()->timestamp . strtoupper(Str::random(6));
+
+    protected function generatePaymentReference(): string
+    {
+        return 'INV-'.now()->timestamp.strtoupper(Str::random(6));
     }
 
-    public function __construct(UserService $userService) {
+    public function __construct(UserService $userService)
+    {
         $investments = Investment::where('reference', null)->get();
-        foreach($investments as $investment) {
+        foreach ($investments as $investment) {
             $reference = $this->generatePaymentReference();
             $investment->reference = $reference;
             $investment->save();
@@ -33,23 +36,25 @@ class UserController extends Controller {
             Transaction::where([
                 'user_id' => $investment->user->id,
                 'amount' => $investment->amount,
-                'type' => 'investment'
+                'type' => 'investment',
             ])->update([
-                'reference' => $reference
+                'reference' => $reference,
             ]);
         }
         $this->userService = $userService;
     }
 
-    public function getUser() {
-        $user = $this->userService->findUser(Auth::id());
+    public function getUser(Request $request)
+    {
+        $user = $this->userService->findUser($request->user()->id);
 
         return response()->json([
-            'user' => $user['message']
-        ], 201);
+            'user' => $user['message'],
+        ], 200);
     }
 
-    public function updateProfileDetails(UpdateProfileDetailsRequest $request) {
+    public function updateProfileDetails(UpdateProfileDetailsRequest $request)
+    {
         $data = [
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -57,37 +62,38 @@ class UserController extends Controller {
 
         $update = $this->userService->updatedetails($data, Auth::id());
 
-        if($request->hasFile('profile_picture')) {
+        if ($request->hasFile('profile_picture')) {
             $user = Auth::user();
             $file = $request->file('profile_picture');
-            $filename = 'profile_' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = 'profile_'.$user->id.'_'.time().'.'.$file->getClientOriginalExtension();
             // $filePath = $file->storeAs('uploads/profile/pictures', $filename, 'public');
             $file->move(public_path('storage/uploads/profile/pictures'), $filename);
 
             if ($user->profile_picture) {
-                $imagePath = public_path('storage/uploads/profile/pictures/' . $user->profile_picture);
+                $imagePath = public_path('storage/uploads/profile/pictures/'.$user->profile_picture);
                 if (File::exists($imagePath)) {
                     File::delete($imagePath);
                 }
             }
             User::where('id', $user->id)->update([
-                'profile_picture' => "storage/uploads/profile/pictures/" . $filename
+                'profile_picture' => 'storage/uploads/profile/pictures/'.$filename,
             ]);
         }
 
         return response()->json([
             'message' => $update['message'],
-            'done' => $update['done']
+            'done' => $update['done'],
         ], $update['code']);
     }
 
-    public function updatePassword(UpdatePasswordRequest $request) {
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
         User::where('id', Auth::id())->update([
-            'password' => Hash::make($request->new_password)
+            'password' => Hash::make($request->new_password),
         ]);
 
         $currentSessionId = session()->getId();
-        if($request->logout_devices) {
+        if ($request->logout_devices) {
             DB::table('sessions')
                 ->where('user_id', Auth::id())
                 ->where('id', '!=', $currentSessionId)
@@ -95,19 +101,21 @@ class UserController extends Controller {
         }
 
         return response()->json([
-            'message' => "Password has been changed successfully.",
-            'done' => true
+            'message' => 'Password has been changed successfully.',
+            'done' => true,
         ], 201);
     }
 
-    public function updatePreferences(Request $request) {
+    public function updatePreferences(Request $request)
+    {
         $preference = $request->input('tag');
         User::where('id', Auth::id())->update([
-            $preference => $request->$preference
+            $preference => $request->$preference,
         ]);
     }
 
-    public function setupaccount(SetupAccountRequest $request) {
+    public function setupaccount(SetupAccountRequest $request)
+    {
         User::where('id', Auth::id())->update([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -116,23 +124,24 @@ class UserController extends Controller {
             'residential_address' => $request->residential_address,
             'place_of_birth' => $request->place_of_birth,
             'postal_code' => $request->postal_code,
-            'occupation' => $request->occupation
+            'occupation' => $request->occupation,
         ]);
+
         return response()->json([
-            'message' => "Account setup was completed",
-            'done' => true
+            'message' => 'Account setup was completed',
+            'done' => true,
         ], 201);
     }
 
-    
-
-    public function logout() {
+    public function logout()
+    {
         auth()->guard('web')->logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
+
         return response()->json([
-            'message' => "Account logged out.",
-            'done' => true
+            'message' => 'Account logged out.',
+            'done' => true,
         ], 201);
     }
 }
