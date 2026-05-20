@@ -133,15 +133,13 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->guard('web')->logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
+        $request->user()->currentAccessToken()->delete(); // ← token-based logout
 
         return response()->json([
             'message' => 'Account logged out.',
             'done' => true,
-        ], 201);
+        ], 200);
     }
 }
