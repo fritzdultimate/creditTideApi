@@ -67,6 +67,11 @@ class UserController extends Controller
         $update = $this->userService->updatedetails($data, Auth::id());
 
         if ($request->hasFile('profile_picture')) {
+            return response()->json([
+                'message' => 'file upload active',
+                'done' => 200,
+            ]);
+            
             $user = Auth::user();
             $file = $request->file('profile_picture');
             $filename = 'profile_'.$user->id.'_'.time().'.'.$file->getClientOriginalExtension();
