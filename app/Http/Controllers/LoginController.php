@@ -10,8 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     protected $registrationService;
 
     public function __construct(RegistrationService $registrationService) {

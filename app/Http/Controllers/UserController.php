@@ -53,8 +53,12 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function updateProfileDetails(UpdateProfileDetailsRequest $request)
-    {
+    public function updateProfileDetails(UpdateProfileDetailsRequest $request) {
+        return response()->json([
+            'message' => 'message',
+            'done' => 200,
+        ]);
+
         $data = [
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
