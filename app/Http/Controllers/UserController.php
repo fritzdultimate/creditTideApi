@@ -79,14 +79,16 @@ class UserController extends Controller
                     File::delete($imagePath);
                 }
             }
-            return response()->json([
-                'message' => $user->name,
-                'done' => 200,
-            ]);
+
             User::where('id', $user->id)->update([
                 'profile_picture' => 'storage/uploads/profile/pictures/'.$filename,
             ]);
         }
+
+        return response()->json([
+            'message' => Auth::user()->name,
+            'done' => 200,
+        ]);
 
         return response()->json([
             'message' => $update['message'],
