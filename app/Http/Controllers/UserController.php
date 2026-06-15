@@ -74,11 +74,6 @@ class UserController extends Controller
             // $filePath = $file->storeAs('uploads/profile/pictures', $filename, 'public');
             $file->move(public_path('storage/uploads/profile/pictures'), $filename);
 
-            return response()->json([
-                'message' => $user->profile_picture,
-                'done' => 200,
-            ]);
-
             if ($user->profile_picture) {
                 $imagePath = public_path('storage/uploads/profile/pictures/'.$user->profile_picture);
                 if (File::exists($imagePath)) {
