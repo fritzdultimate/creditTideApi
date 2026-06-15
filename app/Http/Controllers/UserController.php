@@ -85,10 +85,10 @@ class UserController extends Controller
             ]);
         }
 
-        return response()->json([
-            'message' => Auth::user()->username . 'ddd',
-            'done' => 200,
-        ]);
+        // return response()->json([
+        //     'message' => Auth::user()->username . 'ddd',
+        //     'done' => 200,
+        // ]);
 
         return response()->json([
             'message' => $update['message'],
