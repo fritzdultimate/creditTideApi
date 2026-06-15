@@ -72,17 +72,17 @@ class UserController extends Controller
             $file = $request->file('profile_picture');
             $filename = 'profile_'.$user->id.'_'.time().'.'.$file->getClientOriginalExtension();
             // $filePath = $file->storeAs('uploads/profile/pictures', $filename, 'public');
-            $file->move(public_path('storage/uploads/profile/pictures'), $filename);
+            $file->move(public_path('uploads/profile/pictures'), $filename);
 
             if ($user->profile_picture) {
-                $imagePath = public_path('storage/uploads/profile/pictures/'.$user->profile_picture);
+                $imagePath = public_path('uploads/profile/pictures/'.$user->profile_picture);
                 if (File::exists($imagePath)) {
                     File::delete($imagePath);
                 }
             }
 
             User::where('id', $user->id)->update([
-                'profile_picture' => 'storage/uploads/profile/pictures/'.$filename,
+                'profile_picture' => 'uploads/profile/pictures/'.$filename,
             ]);
         }
 
