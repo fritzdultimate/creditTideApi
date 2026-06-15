@@ -15,17 +15,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->statefulApi();
-        $middleware->append(StartSession::class);
+        // $middleware->statefulApi();
+        // $middleware->append(StartSession::class);
         $middleware->redirectGuestsTo(fn (Request $request) => null);
 
         // Exclude login from CSRF
-        $middleware->validateCsrfTokens(except: [
-            'api/login',
-            'api/register',
-            'login',
-            'register',
-        ]);
+        // $middleware->validateCsrfTokens(except: [
+        //     'api/login',
+        //     'api/register',
+        //     'login',
+        //     'register',
+        // ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Return clean JSON 401 for unauthenticated requests
