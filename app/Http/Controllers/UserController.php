@@ -82,7 +82,7 @@ class UserController extends Controller
             }
 
             User::where('id', $user->id)->update([
-                'profile_picture' => 'uploads/profile/pictures/'.$filename,
+                'profile_picture' => 'public/uploads/profile/pictures/'.$filename,
             ]);
         }
 
