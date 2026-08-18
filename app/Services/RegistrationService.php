@@ -39,6 +39,8 @@ class RegistrationService
                 'password' => $data['password'],
                 'dob'  => $data['dob'],
                 'phone' => $data['phone'] ?? null,
+                'firstname' => '_',
+                'lastname' => '_',
                 'invitation_code' => $this->generateUniqueInvitationCode(),
             ]);
             PasswordResetToken::where('email', $data['email'])->forceDelete(); // purposely deleted all tokens
